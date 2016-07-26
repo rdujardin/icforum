@@ -1,0 +1,14 @@
+{% extends "forum/_base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		{% for ftag in ftags %}
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1 main_tag">
+					{{ ftag }}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
