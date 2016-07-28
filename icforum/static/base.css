@@ -5,9 +5,8 @@
 }
 
 body {
-	background-color: #1a1f33;
-	color: #ddccff;
-	font-family: "Courier New", sans-serif;
+	background-color: #eeeeff;
+	font-family: 'Open Sans', sans-serif;
 }
 
 #panel img {
@@ -17,24 +16,32 @@ body {
 #quote_box {
 	font-size: 0.8em;
 	font-style: italic;
+	margin-top: 30px;
 }
 
 .footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 60px;
-	background-color: #252535;
+	height: 30px;
+	background-color: #333333;
+	text-align: right;
+	color: silver;
+	font-size: 0.8em;
+	font-family: Lucida, sans-serif;
+	padding-top: 5px;
 }
 
 header {
 	padding-top: 15px;
 	padding-bottom: 15px;
-	box-shadow: 0px 1px 6px grey;
 	margin-top: 0;
 	margin-bottom: 20px;
-	background-color: #353545;
+	background-color: #333333;
+	background-image: url('/static/PgkkRd4.jpg');
+	background-position: 0px 340px;
 	font-family: "Cyberverse", "Courier New", sans-serif;
+	box-shadow: 0px 10px 10px black;
 }
 
 header h1 {
@@ -43,4 +50,8 @@ header h1 {
 
 .header_logo {
 	max-width: 150px;
+}
+
+td {
+	padding: 15px;
 }

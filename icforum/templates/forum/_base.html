@@ -16,6 +16,8 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
+
 		<link rel="stylesheet" href="/static/base.css" />
 
 		{% block css %}{% endblock %}
@@ -24,8 +26,7 @@
 		<header class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<img src="/static/10narsh.png" class="header_logo" alt="Infinite Connection" img-responsive" />
-					<h1 class="pull-right">Forums</h1>
+					<a href="{% url 'home' %}"><img src="/static/10narsh2.png" class="header_logo" alt="Infinite Connection" img-responsive" /></a>
 				</div>
 			</div>
 		</header>
@@ -47,7 +48,7 @@
 	    <footer class="footer">
 		    <div class="container-fluid">
 				<div class="row">
-					<p class="col-md-12" >&copy;2016 Infinite Connection</p>
+					<p class="col-md-12" >&copy;2016 <a href="https://infiniteconnection.fr">Infinite Connection</a></p>
 				</div>
 		    </div>
 	    </footer>

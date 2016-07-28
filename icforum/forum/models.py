@@ -35,7 +35,7 @@ class Topic(models.Model):
 	author = models.ForeignKey(User, related_name='created_topics', verbose_name='Author')
 	created = models.DateTimeField(auto_now_add=True, verbose_name='Created')
 	updated = models.DateTimeField(auto_now_add=True, verbose_name='Updated')
-	tags = models.ManyToManyField(Tag)
+	tags = models.ManyToManyField(Tag, verbose_name='Tags')
 
 	def __str__(self):
 		return self.title
@@ -48,4 +48,4 @@ class Message(models.Model):
 	edited = models.DateTimeField(auto_now_add=True, verbose_name='Edited')
 
 	def __str__(self):
-		return self.topic + ' : ' + self.author + ' : ' + self.content[:35] + '(...)'
+		return str(self.topic) + ' : ' + str(self.author) + ' : ' + self.content[:35] + '(...)'

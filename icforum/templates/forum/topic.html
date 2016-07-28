@@ -3,7 +3,12 @@
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
-		{% render_table tags_table %}
+		<h2>{{ topic }}</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		{% render_table messages_table %}
 	</div>
 </div>
 {% endblock %}
