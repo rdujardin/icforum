@@ -8,7 +8,14 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		{% render_table messages_table %}
+		{% for message in messages %}
+			<div class="panel panel-default">
+				<div class="panel-heading"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.edited != message.posted %}(edited : {{ message.edited }}){% endif %}</div>
+				<div class="panel-body">
+					{{ message.content }}
+				</div>
+			</div>
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}

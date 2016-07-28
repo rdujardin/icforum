@@ -6,30 +6,27 @@ from .tables import *
 
 def home(request):
 	tags = Tag.objects.filter(main=True)
-	tags_table = TagTable(tags)
 
 	return render(request, 'forum/home.html', {
-		'tags_table': tags_table,
+		'tags': tags,
 	})
 
 def tag(request, pk):
 	tag = get_object_or_404(Tag.objects.all(), pk=pk)
 	topics = Topic.objects.filter(tags__id__exact=tag.id).order_by('created').reverse()
-	topics_table = TopicTable(topics)
 
 	return render(request, 'forum/tag.html', {
 		'tag': tag,
-		'topics_table': topics_table,
+		'topics': topics,
 	})
 
 def topic(request, pk):
 	topic = get_object_or_404(Topic.objects.all(), pk=pk)
 	messages = Message.objects.filter(topic=topic).order_by('posted')
-	messages_table = MessageTable(messages)
 
 	return render(request, 'forum/topic.html', {
 		'topic': topic,
-		'messages_table': messages_table,
+		'messages': messages,
 	})
 
 def user(request, pk):
