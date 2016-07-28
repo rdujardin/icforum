@@ -9,6 +9,14 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+#panel {
+	background-color: #333355;
+	box-shadow: 0px 0px 10px black;
+	color: silver;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 #panel img {
 	box-shadow: 0px 0px 5px grey;
 }
@@ -30,13 +38,14 @@ body {
 	font-size: 0.8em;
 	font-family: Lucida, sans-serif;
 	padding-top: 5px;
+	box-shadow: 0px -3px 3px grey;
 }
 
 header {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	margin-top: 0;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	background-color: #333333;
 	background-image: url('/static/PgkkRd4.jpg');
 	background-position: 0px 340px;
