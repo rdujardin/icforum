@@ -20,3 +20,10 @@ class TopicForm(forms.ModelForm):
 
 	tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all())
 	first_message = forms.CharField(widget=forms.Textarea)
+
+class NewMessageForm(forms.ModelForm):
+	class Meta:
+		model = Message
+		fields = ['content']
+
+	content = forms.CharField(widget=forms.Textarea)

@@ -73,11 +73,24 @@ def new_topic(request):
 
 def topic(request, pk):
 	topic = get_object_or_404(Topic.objects.all(), pk=pk)
+
+	if request.method == 'GET':
+		new_message_form = NewMessageForm()
+
+	else:
+		new_message_form = NewMessageForm(request.POST)
+		if new_message_form.is_valid():
+			new_message_form.instance.author = request.user
+			new_message_form.instance.topic = topic
+			new_message_form.instance.save()
+			new_message_form = NewMessageForm()
+
 	messages = Message.objects.filter(topic=topic).order_by('posted')
 
 	return _render(request, 'forum/topic.html', {
 		'topic': topic,
 		'messages': messages,
+		'new_message_form': new_message_form,
 	})
 
 def user(request, pk):
