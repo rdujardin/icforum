@@ -3,6 +3,11 @@
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
+		<a class="btn btn-default" href="{% url 'new_topic' %}" role="button">New topic</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
 		<div class="list-group">
 			{% for tag in tags %}
 				<a class="list-group-item" href="{% url 'tag' pk=tag.pk %}">{{ tag }}</a>

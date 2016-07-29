@@ -23,10 +23,15 @@
 		{% block css %}{% endblock %}
 	</head>
 	<body>
-		<header class="container-fluid">
+		<header class="container-fluid" style="background-image: url('{{ rand_pictures.0.0 }}'); background-position: {{ rand_pictures.0.1 }}px {{ rand_pictures.0.2 }}px;">
 			<div class="row">
 				<div class="col-md-12">
 					<a href="{% url 'home' %}"><img src="/static/10narsh2.png" class="header_logo" alt="Infinite Connection" img-responsive" /></a>
+					{% if signed_in_user %}
+						<span class="pull-right">{{ signed_in_user }} - <a href="{% url 'sign_out' %}?next={{ request.path }}">Sign out</a></span>
+					{% else %}
+						<a href="{% url 'sign_in' %}?next={{ request.path }}" class="pull-right">Sign in</a>
+					{% endif %}
 				</div>
 			</div>
 		</header>
@@ -34,7 +39,7 @@
 	        
 	        <div class="row">
 	        	<aside class="col-md-3" id="panel">
-	        		<img src="/static/took_u_long_enough___by_callergi-d8wdu85.jpg" class="img-responsive" />
+	        		<img src="{{ rand_pictures.1 }}" class="img-responsive" />
 	        		<p id="quote_box">There are only two hard problems in Computer Science: cache invalidation and naming things. <span>- Phil Karlton</span></p>
 	        	</aside>
 	        	<div class="col-md-8 col-md-offset-1">

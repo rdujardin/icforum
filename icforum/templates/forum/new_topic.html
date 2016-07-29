@@ -1,0 +1,18 @@
+{% extends "forum/_base.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<h2>New topic</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<form action="{% url 'new_topic' %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Create" />
+		</form>
+	</div>
+</div>
+{% endblock %}

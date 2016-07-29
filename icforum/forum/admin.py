@@ -2,13 +2,9 @@ from django.contrib import admin
 
 from .models import *
 
-@admin.register(Group)
-class GroupAdmin(admin.ModelAdmin):
-	list_display = ['name']
-
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-	list_display = ['name', 'password', 'signup_date']
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+	list_display = ['user', 'signup_date']
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):

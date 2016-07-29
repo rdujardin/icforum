@@ -1,23 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 #
 # Users
 #
 
-class Group(models.Model):
-	name = models.CharField(max_length=100, verbose_name='Name')
-
-	def __str__(self):
-		return self.name
-
-class User(models.Model):
-	name = models.CharField(max_length=100, verbose_name='Name')
-	password = models.CharField(max_length=100, verbose_name='Password')
+class Profile(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	signup_date = models.DateTimeField(auto_now_add=True, auto_now=False, verbose_name='Signed up')
-	groups = models.ManyToManyField(Group)
 
 	def __str__(self):
-		return self.name
+		return self.user.username
 
 #
 # Forums

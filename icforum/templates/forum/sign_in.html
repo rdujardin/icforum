@@ -1,0 +1,23 @@
+{% extends "forum/_base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		{% bootstrap_messages %}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<form class="form" action="{% url 'sign_in' %}" method="post">
+			{% csrf_token %}
+			<input type="hidden" name="next" value="{{ next }}" />
+			{% bootstrap_form form %}
+			{% buttons %}
+				<button type="submit" class="btn btn-primary">
+					{% bootstrap_icon 'star' %} Submit
+				</button>
+			{% endbuttons %}
+		</form>
+	</div>
+</div>
+{% endblock %}

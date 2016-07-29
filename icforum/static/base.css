@@ -47,10 +47,17 @@ header {
 	margin-top: 0;
 	margin-bottom: 40px;
 	background-color: #333333;
-	background-image: url('/static/PgkkRd4.jpg');
-	background-position: 0px 340px;
 	font-family: "Cyberverse", "Courier New", sans-serif;
 	box-shadow: 0px 10px 10px black;
+	color: white;
+}
+
+header .pull-right {
+	margin-top: 10px;
+}
+
+header a {
+	color: #ccccff;
 }
 
 header h1 {
