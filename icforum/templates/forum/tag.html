@@ -10,7 +10,14 @@
 	<div class="col-md-12">
 		<div class="list-group">
 			{% for topic in topics %}
-				<a class="list-group-item" href="{% url 'topic' pk=topic.pk %}">{{ topic }}</a>
+				<div class="panel panel-default">
+					<a href="{% url 'topic' pk=topic.pk %}">
+						<div class="panel-heading">{{ topic.title }}</div>
+						<div class="panel-body">
+							<a href="{% url 'user' pk=topic.author.pk %}">{{ topic.author }}</a> - {{ topic.created }}
+						</div>
+					</a>
+				</div>
 			{% endfor %}
 		</div>
 	</div>
