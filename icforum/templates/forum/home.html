@@ -1,16 +1,16 @@
 {% extends "forum/_base.html" %}
 {% load render_table from django_tables2 %}
 {% block content %}
-<div class="row">
+<div class="row" id="home_buttons">
 	<div class="col-md-12">
-		<a class="btn btn-default" href="{% url 'new_topic' %}" role="button">New topic</a>
+		<a class="btn btn-primary btn-lg" href="{% url 'new_topic' %}" role="button">New topic</a>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12">
 		<div class="list-group">
 			{% for tag in tags %}
-				<a class="list-group-item" href="{% url 'tag' pk=tag.pk %}">{{ tag }}</a>
+				<a class="list-group-item" href="{% url 'tag' pk=tag.pk %}"># {{ tag }}</a>
 			{% endfor %}
 		</div>
 	</div>

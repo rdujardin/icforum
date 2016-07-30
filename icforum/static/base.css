@@ -9,6 +9,10 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+#home_buttons {
+	margin-bottom: 30px;
+}
+
 #wrapper {
 	padding-bottom: 60px; /* must be = to footer height + 30 px */
 }
@@ -19,6 +23,7 @@ body {
 	color: silver;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	margin-bottom: 25px;
 }
 
 #panel img {
