@@ -26,4 +26,4 @@ class NewMessageForm(forms.ModelForm):
 		model = Message
 		fields = ['content']
 
-	content = forms.CharField(widget=forms.Textarea)
+	content = forms.CharField(label="New message", widget=forms.Textarea)
