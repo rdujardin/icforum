@@ -18,6 +18,8 @@
 
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
 
+		<link rel="stylesheet" href="/static/prism.css">
+
 		<link rel="stylesheet" href="/static/base.css" />
 
 		{% block css %}{% endblock %}
@@ -61,13 +63,15 @@
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+		<script src="/static/prism.js"></script>
+
 		<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 		<script>
 			tinymce.init({
 				selector: 'textarea',
 				height: 500,
-				plugins: 'code, advlist, image, imagetools, media, link, colorpicker, paste, table, textcolor',
-				toolbar: ['bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, cut, copy, paste, bullist, numlist, outdent, indent, blockquote, undo, redo, removeformat', 'styleselect, fontselect, fontsizeselect, forecolor, backcolor, link, table, image, media']
+				plugins: 'code, advlist, image, imagetools, media, link, colorpicker, paste, table, textcolor, codesample',
+				toolbar: ['bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, cut, copy, paste, bullist, numlist, outdent, indent, blockquote, undo, redo, removeformat', 'styleselect, fontselect, fontsizeselect, forecolor, backcolor, link, table, image, media, codesample']
 			});
 		</script>
 
