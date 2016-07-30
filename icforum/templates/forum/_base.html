@@ -30,9 +30,9 @@
 				<div class="col-md-12">
 					<a href="{% url 'home' %}"><img src="/static/10narsh2.png" class="header_logo" alt="Infinite Connection" img-responsive" /></a>
 					{% if signed_in_user %}
-						<span class="pull-right">{{ signed_in_user }} - <a href="{% url 'sign_out' %}?next={{ request.path }}">Sign out</a></span>
+						<span class="pull-right glass">{{ signed_in_user }} - <a href="{% url 'sign_out' %}?next={{ request.path }}">Sign out</a></span>
 					{% else %}
-						<a href="{% url 'sign_in' %}?next={{ request.path }}" class="pull-right">Sign in</a>
+						<a href="{% url 'sign_in' %}?next={{ request.path }}" class="pull-right glass">Sign in</a>
 					{% endif %}
 				</div>
 			</div>

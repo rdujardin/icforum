@@ -64,8 +64,16 @@ header .pull-right {
 	margin-top: 10px;
 }
 
-header a {
-	color: #ccccff;
+.glass {
+	background-color: rgba(200, 200, 200, 0.75);
+	border-radius: 10px;
+	padding: 10px;
+	border: 1px solid black;
+	box-shadow: 0px 0px 3px black;
+}
+
+.glass a {
+	color: #332275;
 }
 
 header h1 {
