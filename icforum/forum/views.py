@@ -40,6 +40,13 @@ def sign_out(request):
 def home(request):
 	tags = Tag.objects.filter(main=True)
 
+	for tag in tags:
+		messages = Message.objects.filter(topic__tags__id__exact=tag.id).order_by('posted').reverse()
+		if messages:
+			tag.last_message = messages[0]
+		else:
+			tag.last_message = None
+
 	return _render(request, 'forum/home.html', {
 		'tags': tags,
 	})

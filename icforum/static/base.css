@@ -87,3 +87,8 @@ header h1 {
 td {
 	padding: 15px;
 }
+
+.homepage_tag *:hover {
+	text-decoration: none;
+	background-color: #eeeeff;
+}
