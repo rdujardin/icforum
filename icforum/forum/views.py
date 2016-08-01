@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django_tables2 import RequestConfig
 from django.contrib.auth import authenticate, login, logout
 
+import datetime
+
 from .models import *
 from .tables import *
 from .forms import *
@@ -78,26 +80,53 @@ def new_topic(request):
 		'form': form,
 	})
 
-def topic(request, pk):
+def topic(request, pk, edit_message=None):
 	topic = get_object_or_404(Topic.objects.all(), pk=pk)
+	messages = Message.objects.filter(topic=topic).order_by('posted')
+
+	edit_message_pk = None
+	edit_message_form = None
+
+	new_message_form = NewMessageForm()
 
 	if request.method == 'GET':
-		new_message_form = NewMessageForm()
+		if edit_message:
+			edit_message = messages.filter(pk=edit_message)
+			if edit_message:
+				edit_message = edit_message[0]
+				if edit_message.author == request.user:
+					edit_message_pk = edit_message.pk
+					edit_message_form = EditMessageForm({'content': edit_message.content})
+					new_message_form = None
 
 	else:
-		new_message_form = NewMessageForm(request.POST)
-		if new_message_form.is_valid():
-			new_message_form.instance.author = request.user
-			new_message_form.instance.topic = topic
-			new_message_form.instance.save()
-			new_message_form = NewMessageForm()
+		if 'edit_message_pk' in request.POST:
+			edit_message_form = EditMessageForm(request.POST)
+			if edit_message_form.is_valid():
+				message = messages.filter(pk=request.POST['edit_message_pk'])
+				if message:
+					message = message[0]
+					if message.author == request.user:
+						message.content = edit_message_form.cleaned_data['content']
+						message.edited = datetime.datetime.now()
+						message.save()
+						edit_message_form = None
+			return redirect('topic', pk=topic.pk)
 
-	messages = Message.objects.filter(topic=topic).order_by('posted')
+		else:
+			new_message_form = NewMessageForm(request.POST)
+			if new_message_form.is_valid():
+				new_message_form.instance.author = request.user
+				new_message_form.instance.topic = topic
+				new_message_form.instance.save()
+				new_message_form = NewMessageForm()
 
 	return _render(request, 'forum/topic.html', {
 		'topic': topic,
 		'messages': messages,
 		'new_message_form': new_message_form,
+		'edit_message_pk': edit_message_pk,
+		'edit_message_form': edit_message_form,
 	})
 
 def user(request, pk):

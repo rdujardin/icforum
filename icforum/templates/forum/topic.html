@@ -10,25 +10,43 @@
 	<div class="col-md-12">
 		{% for message in messages %}
 			<div class="panel panel-default">
-				<div class="panel-heading"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.edited != message.posted %}(edited : {{ message.edited }}){% endif %}</div>
-				<div class="panel-body">
-					{{ message.content |safe }}
-				</div>
+				{% if edit_message_pk != message.pk %}
+					<div class="panel-heading"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.edited != message.posted %}(edited : {{ message.edited }}){% endif %}{% if message.author.username == signed_in_user %}<a class="pull-right" href="{% url 'topic' pk=topic.pk edit_message=message.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}</div>
+					<div class="panel-body">
+						{{ message.content |safe }}
+					</div>
+				{% else %}
+					<div class="panel-heading">Editing...<a class="pull-right" href="{% url 'topic' pk=topic.pk %}">Cancel</a></div>
+					<div class="panel-body">
+						<form action="" method="post" novalidate>
+							{% csrf_token %}
+							<input type="hidden" name="edit_message_pk" value="{{ message.pk }}" />
+							{% bootstrap_form edit_message_form %}
+							{% buttons %}
+								<button type="submit" class="btn btn-primary">
+									{% bootstrap_icon 'start' %} Edit
+								</button>
+							{% endbuttons %}
+						</form>
+					</div>
+				{% endif %}
 			</div>
 		{% endfor %}
 	</div>
 </div>
-<div class="row">
-	<div class="col-md-12">
-		<form action="" method="post" novalidate>
-			{% csrf_token %}
-			{% bootstrap_form new_message_form %}
-			{% buttons %}
-				<button type="submit" class="btn btn-primary">
-					{% bootstrap_icon 'star' %} Write
-				</button>
-			{% endbuttons %}
-		</form>
+{% if new_message_form %}
+	<div class="row">
+		<div class="col-md-12">
+			<form action="" method="post" novalidate>
+				{% csrf_token %}
+				{% bootstrap_form new_message_form %}
+				{% buttons %}
+					<button type="submit" class="btn btn-primary">
+						{% bootstrap_icon 'star' %} Write
+					</button>
+				{% endbuttons %}
+			</form>
+		</div>
 	</div>
-</div>
+{% endif %}
 {% endblock %}

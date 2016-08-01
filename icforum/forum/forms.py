@@ -27,3 +27,10 @@ class NewMessageForm(forms.ModelForm):
 		fields = ['content']
 
 	content = forms.CharField(label="New message", widget=forms.Textarea)
+
+class EditMessageForm(forms.ModelForm):
+	class Meta:
+		model = Message
+		fields = ['content']
+
+	content = forms.CharField(label="Edit message", widget=forms.Textarea)
