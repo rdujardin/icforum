@@ -2,10 +2,10 @@
 Forum Infinite Connection
 
 ## technology
-Written in Python 3.5.x with the framework Django.
-Deployment with Nginx and USWGI.
-Responsive design with Bootstrap 3 and jQuery.
-Versioned with Git.
+ * Written in Python 3.5.x with the framework Django.
+ * Deployment with Nginx and USWGI.
+ * Responsive design with Bootstrap 3 and jQuery.
+ * Versioned with Git.
 
 ## main goals
  * bases of a forum, organized with tags instead of categories (allowing to filter directly instead of browsing) : user and group system with authentication and permissions system on groups, topics (creating, viewing with pagination, editing, deleting), messages (posting, editing, deleting)
