@@ -16,11 +16,12 @@
 						{{ message.content |safe }}
 					</div>
 				{% else %}
-					<div class="panel-heading">Editing...<a class="pull-right" href="{% url 'topic' pk=topic.pk %}">Cancel</a></div>
+					<div class="panel-heading">Editing...<a class="pull-right" href="{% url 'topic' pk=topic.pk page=page %}">Cancel</a></div>
 					<div class="panel-body">
 						<form action="" method="post" novalidate>
 							{% csrf_token %}
 							<input type="hidden" name="edit_message_pk" value="{{ message.pk }}" />
+							<input type="hidden" name="page" value="{{ page }}" />
 							{% bootstrap_form edit_message_form %}
 							{% buttons %}
 								<button type="submit" class="btn btn-primary">
@@ -34,11 +35,23 @@
 		{% endfor %}
 	</div>
 </div>
+<div class="row">
+	<div class="col-md-12">
+		<nav aria-label="Page navigation" class="text-center">
+			<ul class="pagination">
+				{% for i in num_pages %}
+					<li{% if i == page %} class="active"{% endif %}><a href="{% url 'topic' pk=topic.pk page=i %}">{{ i }}</a></li>
+				{% endfor %}
+			</ul>
+		</nav>
+	</div>
+</div>
 {% if new_message_form %}
 	<div class="row">
 		<div class="col-md-12">
 			<form action="" method="post" novalidate>
 				{% csrf_token %}
+				<input type="hidden" name="page" value="{{ page }}" />
 				{% bootstrap_form new_message_form %}
 				{% buttons %}
 					<button type="submit" class="btn btn-primary">

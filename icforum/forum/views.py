@@ -80,9 +80,29 @@ def new_topic(request):
 		'form': form,
 	})
 
-def topic(request, pk, edit_message=None):
+def topic(request, pk, edit_message=None, page=1):
 	topic = get_object_or_404(Topic.objects.all(), pk=pk)
 	messages = Message.objects.filter(topic=topic).order_by('posted')
+
+	if edit_message:
+		msgid = int(edit_message)
+		pos = 0
+		for message in messages:
+			if message.pk == msgid:
+				break
+			pos += 1
+		page = pos // 10 + 1
+
+	page = int(page)
+	num_pages = len(messages) // 10 + 1
+
+	try:
+		display_messages = messages[(page-1)*10:page*10]
+	except:
+		try:
+			display_messages = messages[(page-1)*10:]
+		except:
+			display_messages = []
 
 	edit_message_pk = None
 	edit_message_form = None
@@ -111,7 +131,7 @@ def topic(request, pk, edit_message=None):
 						message.edited = datetime.datetime.now()
 						message.save()
 						edit_message_form = None
-			return redirect('topic', pk=topic.pk)
+			return redirect('topic', pk=topic.pk, page=request.POST['page'])
 
 		else:
 			new_message_form = NewMessageForm(request.POST)
@@ -120,10 +140,13 @@ def topic(request, pk, edit_message=None):
 				new_message_form.instance.topic = topic
 				new_message_form.instance.save()
 				new_message_form = NewMessageForm()
+				return redirect('topic', pk=topic.pk, page=request.POST['page'])
 
 	return _render(request, 'forum/topic.html', {
 		'topic': topic,
-		'messages': messages,
+		'messages': display_messages,
+		'page': page,
+		'num_pages': range(1, num_pages + 1),
 		'new_message_form': new_message_form,
 		'edit_message_pk': edit_message_pk,
 		'edit_message_form': edit_message_form,

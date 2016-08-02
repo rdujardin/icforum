@@ -11,6 +11,7 @@ urlpatterns = [
 
 	url(r'^topic/new/$', views.new_topic, name='new_topic'),
 	url(r'^topic/(?P<pk>\d+)/$', views.topic, name='topic'),
+	url(r'^topic/(?P<pk>\d+)/page/(?P<page>\d+)/$', views.topic, name='topic'),
 	url(r'^topic/(?P<pk>\d+)/edit/(?P<edit_message>\d+)/$', views.topic, name='topic'),
 
 	url(r'^user/(?P<pk>\d+)/$', views.user, name='user'),
