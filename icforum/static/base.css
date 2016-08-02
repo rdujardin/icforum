@@ -6,6 +6,7 @@
 
 body {
 	background-color: #eeeeff;
+	/*background-color: #222225;*/
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -15,6 +16,10 @@ body {
 
 #wrapper {
 	padding-bottom: 60px; /* must be = to footer height + 30 px */
+}
+
+#main_disclaimer {
+	margin-bottom: 20px;
 }
 
 #panel {
