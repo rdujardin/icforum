@@ -34,6 +34,12 @@ class Topic(models.Model):
 		return self.title
 
 class Message(models.Model):
+
+	class Meta:
+		permissions = (
+			('edit_not_owned_message', 'Can edit messages authored by someone else'),
+		)
+
 	topic = models.ForeignKey(Topic, related_name='messages', verbose_name='Topic')
 	author = models.ForeignKey(User, related_name='posted_messages', verbose_name='Author')
 	content = models.TextField(verbose_name='Content')

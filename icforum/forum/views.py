@@ -10,16 +10,19 @@ from .forms import *
 
 import random
 
+
 def get_rand_pictures():
 	return [
 		random.choice([('/static/PgkkRd4.jpg',0,340)]),
 		random.choice(['/static/took_u_long_enough___by_callergi-d8wdu85.jpg','/static/hengsha_morning_by_najtkriss-d4aelk1.jpg']),
 	]
 
+
 def _render(request, template, extra):
 	extra['rand_pictures'] = get_rand_pictures()
 	extra['signed_in_user'] = request.user.username if request.user.is_authenticated() else None
 	return render(request, template, extra)
+
 
 def sign_in(request):
 	if request.method == 'POST':
@@ -35,9 +38,11 @@ def sign_in(request):
 		'next': request.POST['next'] if 'next' in request.POST else (request.GET['next'] if 'next' in request.GET else '/'),
 	})
 
+
 def sign_out(request):
 	logout(request)
 	return redirect(request.GET['next'] if 'next' in request.GET else '/')
+
 
 def home(request):
 	tags = Tag.objects.filter(main=True)
@@ -53,6 +58,7 @@ def home(request):
 		'tags': tags,
 	})
 
+
 def tag(request, pk):
 	tag = get_object_or_404(Tag.objects.all(), pk=pk)
 	topics = Topic.objects.filter(tags__id__exact=tag.id).order_by('created').reverse()
@@ -61,6 +67,7 @@ def tag(request, pk):
 		'tag': tag,
 		'topics': topics,
 	})
+
 
 def new_topic(request):
 	if request.method == 'POST':
@@ -79,6 +86,7 @@ def new_topic(request):
 	return _render(request, 'forum/new_topic.html', {
 		'form': form,
 	})
+
 
 def topic(request, pk, edit_message=None, page=1):
 	topic = get_object_or_404(Topic.objects.all(), pk=pk)
@@ -114,7 +122,7 @@ def topic(request, pk, edit_message=None, page=1):
 			edit_message = messages.filter(pk=edit_message)
 			if edit_message:
 				edit_message = edit_message[0]
-				if edit_message.author == request.user:
+				if edit_message.author == request.user or request.user.has_perm('forum.edit_not_owned_message'):
 					edit_message_pk = edit_message.pk
 					edit_message_form = EditMessageForm({'content': edit_message.content})
 					new_message_form = None
@@ -126,7 +134,7 @@ def topic(request, pk, edit_message=None, page=1):
 				message = messages.filter(pk=request.POST['edit_message_pk'])
 				if message:
 					message = message[0]
-					if message.author == request.user:
+					if message.author == request.user or request.user.has_perm('forum.edit_not_owned_message'):
 						message.content = edit_message_form.cleaned_data['content']
 						message.edited = datetime.datetime.now()
 						message.save()
@@ -150,7 +158,9 @@ def topic(request, pk, edit_message=None, page=1):
 		'new_message_form': new_message_form,
 		'edit_message_pk': edit_message_pk,
 		'edit_message_form': edit_message_form,
+		'signed_in_user_can_edit_all': request.user.has_perm('forum.edit_not_owned_message'),
 	})
+
 
 def user(request, pk):
 	user = get_object_or_404(User.objects.all(), pk=pk)
