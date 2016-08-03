@@ -11,7 +11,7 @@ class SignInForm(forms.Form):
 		cleaned_data = super(SignInForm, self).clean()
 		user = authenticate(username=cleaned_data.get('username'), password=cleaned_data.get('password'))
 		if user is None:
-			raise ValidationError('Invalid username or password')
+			raise forms.ValidationError('Invalid username or password')
 
 class TopicForm(forms.ModelForm):
 	class Meta:
