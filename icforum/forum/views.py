@@ -63,6 +63,15 @@ def tag(request, pk):
 	tag = get_object_or_404(Tag.objects.all(), pk=pk)
 	topics = Topic.objects.filter(tags__id__exact=tag.id).order_by('created').reverse()
 
+	if tag.only_for.all():
+		allowed = False
+		for allowed_group in tag.only_for.all():
+			if allowed_group in request.user.groups.all():
+				allowed = True
+
+		if not allowed:
+			return redirect(home)
+
 	return _render(request, 'forum/tag.html', {
 		'tag': tag,
 		'topics': topics,
@@ -89,9 +98,23 @@ def new_topic(request):
 
 
 def topic(request, pk, edit_message=None, page=1):
+	# Get topic
 	topic = get_object_or_404(Topic.objects.all(), pk=pk)
+
+	# Check that topic does not belong to a tag only for a group the signed in user does not belong to
+	for tag in topic.tags.all():
+		if tag.only_for.all():
+			allowed = False
+			for allowed_group in tag.only_for.all():
+				if allowed_group in request.user.groups.all():
+					allowed = True
+			if not allowed:
+				return redirect(home)
+
+	# Get messages in topic
 	messages = Message.objects.filter(topic=topic).order_by('posted')
 
+	# If given a message id to edit, determine on which page it stands
 	if edit_message:
 		msgid = int(edit_message)
 		pos = 0
@@ -101,9 +124,11 @@ def topic(request, pk, edit_message=None, page=1):
 			pos += 1
 		page = pos // 10 + 1
 
+	# Determine which page to display and how many pages exist in topic
 	page = int(page)
 	num_pages = len(messages) // 10 + 1
 
+	# Select the messages standing on the right page
 	try:
 		display_messages = messages[(page-1)*10:page*10]
 	except:
@@ -112,13 +137,16 @@ def topic(request, pk, edit_message=None, page=1):
 		except:
 			display_messages = []
 
+	# Some initialization
 	edit_message_pk = None
 	edit_message_form = None
 
+	# Prepare new message form
 	new_message_form = NewMessageForm()
 
 	if request.method == 'GET':
 		if edit_message:
+			# If an edit link has been clicked, prepare edit message form and remove new message form
 			edit_message = messages.filter(pk=edit_message)
 			if edit_message:
 				edit_message = edit_message[0]
@@ -129,6 +157,7 @@ def topic(request, pk, edit_message=None, page=1):
 
 	else:
 		if 'edit_message_pk' in request.POST:
+			# Edit message form submitted
 			edit_message_form = EditMessageForm(request.POST)
 			if edit_message_form.is_valid():
 				message = messages.filter(pk=request.POST['edit_message_pk'])
@@ -142,6 +171,7 @@ def topic(request, pk, edit_message=None, page=1):
 			return redirect('topic', pk=topic.pk, page=request.POST['page'])
 
 		else:
+			# New message form submitted
 			new_message_form = NewMessageForm(request.POST)
 			if new_message_form.is_valid():
 				new_message_form.instance.author = request.user
@@ -150,6 +180,7 @@ def topic(request, pk, edit_message=None, page=1):
 				new_message_form = NewMessageForm()
 				return redirect('topic', pk=topic.pk, page=request.POST['page'])
 
+	# Render
 	return _render(request, 'forum/topic.html', {
 		'topic': topic,
 		'messages': display_messages,

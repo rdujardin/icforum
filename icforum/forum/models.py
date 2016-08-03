@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 #
 # Users
@@ -19,6 +19,7 @@ class Profile(models.Model):
 class Tag(models.Model):
 	name = models.CharField(max_length=100, verbose_name='Name')
 	main = models.BooleanField(default=False, verbose_name='On Homepage')
+	only_for = models.ManyToManyField(Group, verbose_name='Allowed Groups')
 
 	def __str__(self):
 		return self.name
