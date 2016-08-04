@@ -14,7 +14,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading"># {{ tag }}</div>
 						<div class="panel-body">
-							{% if tag.last_message %}<a href="{% url 'user' pk=tag.last_message.author.pk %}">{{ tag.last_message.author }}</a> in <a href="{% url 'topic' pk=tag.last_message.topic.pk %}">{{ tag.last_message.topic }}</a> ({{ tag.last_message.posted }}){% else %}No messages{% endif %} 
+							{% if tag.last_message %}<a href="{% url 'user' pk=tag.last_message.author.pk %}">{{ tag.last_message.author }}</a> in <a href="{% url 'topic' pk=tag.last_message.topic.pk %}">{{ tag.last_message.topic }}</a> ({{ tag.last_message.posted }}){% else %}<a href="#">No messages</a>{% endif %} 
 						</div>
 					</div>
 				</a>
