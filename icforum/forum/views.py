@@ -115,6 +115,9 @@ def topic(request, pk, edit_message=None, page=1):
 	# Get topic
 	topic = get_object_or_404(Topic.objects.all(), pk=pk)
 
+	# Get tags
+	tags = topic.tags.all()
+
 	# Check that topic does not belong to a tag only for a group the signed in user does not belong to
 	for tag in topic.tags.all():
 		if tag.only_for.all():
@@ -198,6 +201,7 @@ def topic(request, pk, edit_message=None, page=1):
 	# Render
 	return _render(request, 'forum/topic.html', {
 		'topic': topic,
+		'tags': tags,
 		'messages': display_messages,
 		'page': page,
 		'num_pages': range(1, num_pages + 1),
