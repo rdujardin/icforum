@@ -5,9 +5,15 @@
 }
 
 body {
-	background-color: #eeeeff;
-	/*background-color: #222225;*/
+	background-color: #222225;
+	background-image: url('/static/dark_leather.png');
+	background-repeat: repeat;
+	color: #eeeeff;
 	font-family: 'Open Sans', sans-serif;
+}
+
+.panel {
+	color: black;
 }
 
 #home_buttons {
@@ -57,7 +63,7 @@ body {
 	font-size: 0.8em;
 	font-family: Lucida, sans-serif;
 	padding-top: 5px;
-	box-shadow: 0px -3px 3px grey;
+	box-shadow: 0px -1px 3px navy;
 }
 
 header {
@@ -67,7 +73,7 @@ header {
 	margin-bottom: 40px;
 	background-color: #333333;
 	font-family: "Cyberverse", "Courier New", sans-serif;
-	box-shadow: 0px 10px 10px black;
+	box-shadow: 0px 5px 10px black;
 	color: white;
 }
 
