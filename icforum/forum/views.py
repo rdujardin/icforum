@@ -9,6 +9,20 @@ from .tables import *
 from .forms import *
 
 import random
+import bleach
+
+
+def sanitize_html(content):
+	return bleach.clean(content,
+		tags=['a', 'abbr', 'acronym', 'address', 'area', 'b', 'bdo', 'big', 'blockquote', 'br', 'button', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'dd', 'del', 'dfn', 'dir', 'div', 'dl', 'dt', 'em', 'fieldset', 'font', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'map', 'menu', 'ol', 'optgroup', 'option', 'p', 'pre', 'q', 's', 'samp', 'select', 'small', 'span', 'strike', 'strong', 'sub', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'u', 'tr', 'tt', 'u', 'ul', 'var'],
+		attributes={
+			'*': ['class', 'id', 'style'],
+			'a': ['href'],
+			'font': ['color', 'face', 'size'],
+			'img': ['align', 'alt', 'height', 'src', 'title', 'width'],
+		},
+		styles=['color', 'text-align', 'background-color']
+	)
 
 
 def get_rand_pictures():
@@ -84,7 +98,7 @@ def new_topic(request):
 		if form.is_valid():
 			form.instance.author = request.user
 			form.instance.save()
-			first_message = Message(topic=form.instance, author=request.user, content=form.cleaned_data['first_message'])
+			first_message = Message(topic=form.instance, author=request.user, content=sanitize_html(form.cleaned_data['first_message']))
 			first_message.save()
 			for tag in form.cleaned_data['tags']:
 				form.instance.tags.add(tag)
@@ -164,7 +178,7 @@ def topic(request, pk, edit_message=None, page=1):
 				if message:
 					message = message[0]
 					if message.author == request.user or request.user.has_perm('forum.edit_not_owned_message'):
-						message.content = edit_message_form.cleaned_data['content']
+						message.content = sanitize_html(edit_message_form.cleaned_data['content'])
 						message.edited = datetime.datetime.now()
 						message.save()
 						edit_message_form = None
@@ -176,6 +190,7 @@ def topic(request, pk, edit_message=None, page=1):
 			if new_message_form.is_valid():
 				new_message_form.instance.author = request.user
 				new_message_form.instance.topic = topic
+				new_message_form.instance.content = sanitize_html(new_message_form.instance.content)
 				new_message_form.instance.save()
 				new_message_form = NewMessageForm()
 				return redirect('topic', pk=topic.pk, page=request.POST['page'])
