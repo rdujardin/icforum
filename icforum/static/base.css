@@ -12,6 +12,14 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+#title {
+	margin-bottom: 1em;
+}
+
+#title .label a {
+	color: white;
+}
+
 .panel {
 	color: black;
 }
