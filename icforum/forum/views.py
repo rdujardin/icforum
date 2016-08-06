@@ -86,6 +86,13 @@ def tag(request, pk):
 		if not allowed:
 			return redirect(home)
 
+	for topic in topics:
+		messages = Message.objects.filter(topic=topic).order_by('posted').reverse()
+		if messages:
+			topic.last_message = messages[0]
+		else:
+			topic.last_message = None
+
 	return _render(request, 'forum/tag.html', {
 		'tag': tag,
 		'topics': topics,

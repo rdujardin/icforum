@@ -8,18 +8,28 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		{% for tag in tags %}
-			<div class="homepage_tag">
-				<a href="{% url 'tag' pk=tag.pk %}">
-					<div class="panel panel-default">
-						<div class="panel-heading"># {{ tag }}</div>
-						<div class="panel-body">
-							{% if tag.last_message %}<a href="{% url 'user' pk=tag.last_message.author.pk %}">{{ tag.last_message.author }}</a> in <a href="{% url 'topic' pk=tag.last_message.topic.pk %}">{{ tag.last_message.topic }}</a> ({{ tag.last_message.posted }}){% else %}<a href="#">No messages</a>{% endif %} 
-						</div>
-					</div>
-				</a>
-			</div>
-		{% endfor %}
+		<table class="table table-striped">
+			<thead>
+				<th>Tag</th>
+				<th>Last Response</th>
+			</thead>
+			<tbody>
+				{% for tag in tags %}
+					<tr>
+						<td><a href="{% url 'tag' pk=tag.pk %}"># {{ tag }}</a></td>
+						<td>
+							{% if topic.last_message %}
+								<a href="{% url 'topic' pk=tag.last_message.topic.pk %}">Last response ({{ tag.last_message.posted }})</a>
+								 by 
+								<a href="{% url 'user' pk=tag.last_message.author.pk %}">{{ tag.last_message.author }}</a> 
+							{% else %}
+								No messages
+							{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
 </div>
 {% endblock %}
