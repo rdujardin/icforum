@@ -27,8 +27,8 @@ def sanitize_html(content):
 
 def get_rand_pictures():
 	return [
-		random.choice([('/static/PgkkRd4.jpg',0,340)]),
-		random.choice(['/static/took_u_long_enough___by_callergi-d8wdu85.jpg','/static/hengsha_morning_by_najtkriss-d4aelk1.jpg']),
+		random.choice([('/static/PgkkRd4.jpg', 0, 340)]),
+		random.choice(['/static/panelpics/took_u_long_enough___by_callergi-d8wdu85.jpg', '/static/panelpics/hengsha_morning_by_najtkriss-d4aelk1.jpg', '/static/panelpics/53aba4931a206f6fe02bffe072bc287a.jpg', 'static/panelpics/v_for_vendetta_teaser_c_by_sahinduezguen-d4cdb87.jpg']),
 	]
 
 
