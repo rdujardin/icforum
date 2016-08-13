@@ -8,30 +8,51 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<table class="table table-striped">
-			<thead>
-				<th>Topic</th>
-				<th>Created</th>
-				<th>Last Response</th>
-			</thead>
-			<tbody>
-				{% for topic in topics %}
-					<tr>
-						<td><a href="{% url 'topic' pk=topic.pk %}">{{ topic.title }}</a></td>
-						<td>by <a href="{% url 'user' pk=topic.author.pk %}">{{ topic.author }}</a> ({{ topic.created }})</td>
-						<td>
+
+		{% for topic in topics %}
+
+			<div class="row tile">
+				<div class="col-md-12">
+
+					<div class="row">
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-12">
+									<a href="{% url 'topic' pk=topic.pk %}" class="goto">{{ topic.title }}</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 small">
+									by <a href="{% url 'user' pk=topic.author.pk %}">{{ topic.author }}</a> ({{ topic.created }})
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 small">
 							{% if topic.last_message %}
-								<a href="{% url 'topic' pk=topic.pk %}">Last response ({{ topic.last_message.posted }})</a>
-								 by 
-								<a href="{% url 'user' pk=topic.last_message.author.pk %}">{{ topic.last_message.author }}</a> 
+								<a href="{% url 'topic' pk=topic.pk %}">Last response ({{ topic.last_message.posted }})</a> by <a href="{% url 'user' pk=topic.last_message.author.pk %}">{{ topic.last_message.author }}</a>
 							{% else %}
 								No messages
 							{% endif %}
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		{% endfor %}
+
 	</div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+	$(document).ready(function(){
+		$('.tile').click(function(){
+			window.location = $(this).find('.goto').attr('href');
+		});
+	});
+</script>
+
 {% endblock %}

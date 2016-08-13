@@ -1,35 +1,42 @@
 {% extends "forum/_base.html" %}
 {% load render_table from django_tables2 %}
 {% block content %}
-<div class="row" id="home_buttons">
-	<div class="col-md-12">
-		<a class="btn btn-primary btn-lg" href="{% url 'new_topic' %}" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> New topic</a>
-	</div>
-</div>
 <div class="row">
 	<div class="col-md-12">
-		<table class="table table-striped">
-			<thead>
-				<th>Tag</th>
-				<th>Last Response</th>
-			</thead>
-			<tbody>
-				{% for tag in tags %}
-					<tr>
-						<td><a href="{% url 'tag' pk=tag.pk %}"># {{ tag }}</a></td>
-						<td>
-							{% if topic.last_message %}
-								<a href="{% url 'topic' pk=tag.last_message.topic.pk %}">Last response ({{ tag.last_message.posted }})</a>
-								 by 
-								<a href="{% url 'user' pk=tag.last_message.author.pk %}">{{ tag.last_message.author }}</a> 
-							{% else %}
-								No messages
-							{% endif %}
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+
+		{% for tag in tags %}
+
+			<div class="row tile">
+				<div class="col-md-12">
+
+					<div class="row"><div class="col-md-12"><a href="{% url 'tag' pk=tag.pk %}" class="goto">{{ tag }}</a></div></div>
+					<div class="row small"><div class="col-md-12">
+						{% if tag.last_message %}
+							<a href="{% url 'topic' pk=tag.last_message.topic.pk %}">Last response ({{ tag.last_message.posted }})</a>
+							 by 
+							<a href="{% url 'user' pk=tag.last_message.author.pk %}">{{ tag.last_message.author }}</a> 
+						{% else %}
+							No messages
+						{% endif %}
+					</div></div>
+
+				</div>
+			</div>
+
+		{% endfor %}
+
 	</div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+	$(document).ready(function(){
+		$('.tile').click(function(){
+			window.location = $(this).find('.goto').attr('href');
+		});
+	});
+</script>
+
 {% endblock %}
