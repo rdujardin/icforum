@@ -20,6 +20,7 @@ class Tag(models.Model):
 	name = models.CharField(max_length=100, verbose_name='Name')
 	main = models.BooleanField(default=False, verbose_name='On Homepage')
 	only_for = models.ManyToManyField(Group, verbose_name='Allowed Groups')
+	cover_image = models.CharField(max_length=100, blank=True)
 
 	def __str__(self):
 		return self.name
