@@ -12,6 +12,10 @@ class SignInForm(forms.Form):
 		user = authenticate(username=cleaned_data.get('username'), password=cleaned_data.get('password'))
 		if user is None:
 			raise forms.ValidationError('Invalid username or password')
+		else:
+			profile = Profile.objects.get(user=user)
+			if profile.banned:
+				raise forms.ValidationError('You have been banned, try again later')
 
 class TopicForm(forms.ModelForm):
 	class Meta:
