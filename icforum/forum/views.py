@@ -161,6 +161,11 @@ def topic(request, pk, edit_message=None, page=1):
 		except:
 			display_messages = []
 
+	# Determine if 'edited' date must be shown for each message
+	for msg in display_messages:
+		delta = msg.edited - msg.posted if msg.edited > msg.posted else msg.posted - msg.edited
+		msg.show_edited = delta >= datetime.timedelta(seconds=1)
+
 	# Some initialization
 	edit_message_pk = None
 	edit_message_form = None
