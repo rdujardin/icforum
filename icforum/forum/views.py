@@ -86,7 +86,9 @@ def home(request):
 
 def tag(request, pk):
 	tag = get_object_or_404(Tag.objects.all(), pk=pk)
-	topics = Topic.objects.filter(tags__id__exact=tag.id).order_by('created').reverse()
+
+	post_it_topics = Topic.objects.filter(tags__id__exact=tag.id, post_it=True).order_by('created')
+	regular_topics = Topic.objects.filter(tags__id__exact=tag.id, post_it=False).order_by('created').reverse()
 
 	if tag.only_for.all():
 		allowed = False
@@ -97,16 +99,21 @@ def tag(request, pk):
 		if not allowed:
 			return redirect(home)
 
-	for topic in topics:
-		messages = Message.objects.filter(topic=topic).order_by('posted').reverse()
-		if messages:
-			topic.last_message = messages[0]
-		else:
-			topic.last_message = None
+	def set_last_message(topic_set):
+		for topic in topic_set:
+			messages = Message.objects.filter(topic=topic).order_by('posted').reverse()
+			if messages:
+				topic.last_message = messages[0]
+			else:
+				topic.last_message = None
+
+	set_last_message(post_it_topics)
+	set_last_message(regular_topics)
 
 	return _render(request, 'forum/tag.html', {
 		'tag': tag,
-		'topics': topics,
+		'post_it_topics': post_it_topics,
+		'regular_topics': regular_topics,
 	})
 
 

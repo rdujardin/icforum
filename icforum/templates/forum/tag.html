@@ -9,7 +9,41 @@
 <div class="row">
 	<div class="col-md-12">
 
-		{% for topic in topics %}
+		{% for topic in post_it_topics %}
+
+			<div class="row tile">
+				<div class="col-md-12">
+
+					<div class="row">
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-12">
+									<strong><a href="{% url 'topic' pk=topic.pk %}" class="goto">{{ topic.title }}</a></strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 small">
+									by <a href="{% url 'user' pk=topic.author.pk %}">{{ topic.author }}</a> ({{ topic.created }})
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 small">
+							{% if topic.last_message %}
+								<a href="{% url 'topic' pk=topic.pk %}">Last response ({{ topic.last_message.posted }})</a><br />by <a href="{% url 'user' pk=topic.last_message.author.pk %}">{{ topic.last_message.author }}</a>
+							{% else %}
+								No messages
+							{% endif %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		{% endfor %}
+
+		<hr />
+
+		{% for topic in regular_topics %}
 
 			<div class="row tile">
 				<div class="col-md-12">
@@ -29,7 +63,7 @@
 						</div>
 						<div class="col-md-4 small">
 							{% if topic.last_message %}
-								<a href="{% url 'topic' pk=topic.pk %}">Last response ({{ topic.last_message.posted }})</a> by <a href="{% url 'user' pk=topic.last_message.author.pk %}">{{ topic.last_message.author }}</a>
+								<a href="{% url 'topic' pk=topic.pk %}">Last response ({{ topic.last_message.posted }})</a><br />by <a href="{% url 'user' pk=topic.last_message.author.pk %}">{{ topic.last_message.author }}</a>
 							{% else %}
 								No messages
 							{% endif %}
