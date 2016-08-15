@@ -29,7 +29,7 @@
 		{% for message in messages %}
 			<div class="panel panel-default">
 				{% if edit_message_pk != message.pk %}
-					<div class="panel-heading"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.show_edited %}(edited : {{ message.edited }}){% endif %}{% if message.author.username == signed_in_user or signed_in_user_can_edit_all %}<a class="pull-right" href="{% url 'topic' pk=topic.pk edit_message=message.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}</div>
+					<div class="panel-heading small"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.show_edited %}(edited : {{ message.edited }}){% endif %}{% if message.author.username == signed_in_user or signed_in_user_can_edit_all %}<a class="pull-right" href="{% url 'topic' pk=topic.pk edit_message=message.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}</div>
 					<div class="panel-body">
 						{{ message.content |safe }}
 					</div>
