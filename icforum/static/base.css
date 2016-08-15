@@ -153,4 +153,5 @@ td {
 .panel-body {
 	padding: 8px;
 	padding-bottom: 5px;
+	overflow: auto;
 }
