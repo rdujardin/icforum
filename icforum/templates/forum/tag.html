@@ -11,7 +11,7 @@
 
 		{% for topic in post_it_topics %}
 
-			<div class="row tile">
+			<div class="row tile pad2x">
 				<div class="col-md-12">
 
 					<div class="row">
@@ -45,7 +45,7 @@
 
 		{% for topic in regular_topics %}
 
-			<div class="row tile{% if topic.closed %} closed{% endif %}">
+			<div class="row tile{% if topic.closed %} closed{% endif %} pad">
 				<div class="col-md-12">
 
 					<div class="row">

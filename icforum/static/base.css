@@ -163,3 +163,11 @@ td {
 .closed a {
 	color: #bbbbee;
 }
+
+.pad {
+	padding: 0.5em;
+}
+
+.pad2x {
+	padding: 1em;
+}
