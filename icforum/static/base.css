@@ -155,3 +155,11 @@ td {
 	padding-bottom: 5px;
 	overflow: auto;
 }
+
+.closed {
+	color: #ccccdd;
+}
+
+.closed a {
+	color: #bbbbee;
+}

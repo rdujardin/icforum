@@ -33,6 +33,7 @@ class Topic(models.Model):
 	updated = models.DateTimeField(auto_now_add=True, verbose_name='Updated')
 	tags = models.ManyToManyField(Tag, verbose_name='Tags')
 	post_it = models.BooleanField(default=False, verbose_name='Post-it')
+	closed = models.BooleanField(default=False, verbose_name='Closed')
 
 	def __str__(self):
 		return self.title

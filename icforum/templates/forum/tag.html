@@ -45,7 +45,7 @@
 
 		{% for topic in regular_topics %}
 
-			<div class="row tile">
+			<div class="row tile{% if topic.closed %} closed{% endif %}">
 				<div class="col-md-12">
 
 					<div class="row">

@@ -206,7 +206,7 @@ def topic(request, pk, edit_message=None, page=1):
 		if 'edit_message_pk' in request.POST:
 			# Edit message form submitted
 			edit_message_form = EditMessageForm(request.POST)
-			if edit_message_form.is_valid():
+			if edit_message_form.is_valid() and not topic.closed:
 				message = messages.filter(pk=request.POST['edit_message_pk'])
 				if message:
 					message = message[0]
@@ -220,7 +220,7 @@ def topic(request, pk, edit_message=None, page=1):
 		else:
 			# New message form submitted
 			new_message_form = NewMessageForm(request.POST)
-			if new_message_form.is_valid():
+			if new_message_form.is_valid() and not topic.closed:
 				new_message_form.instance.author = request.user
 				new_message_form.instance.topic = topic
 				new_message_form.instance.content = sanitize_html(new_message_form.instance.content)

@@ -7,6 +7,9 @@
 			<h2>
 				{{ topic }} 
 			</h2>
+			{% if topic.closed %}
+				<span class="label label-danger">Closed</span>
+			{% endif %}
 			{% for tag in tags %}
 				<span class="label label-primary"><a href="{% url 'tag' pk=tag.pk %}">{{ tag }}</a></span>
 			{% endfor %}
@@ -29,25 +32,29 @@
 		{% for message in messages %}
 			<div class="panel panel-default">
 				{% if edit_message_pk != message.pk %}
-					<div class="panel-heading small"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.show_edited %}(edited : {{ message.edited }}){% endif %}{% if message.author.username == signed_in_user or signed_in_user_can_edit_all %}<a class="pull-right" href="{% url 'topic' pk=topic.pk edit_message=message.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}</div>
+					<div class="panel-heading small"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.show_edited %}(edited : {{ message.edited }}){% endif %}{% if not topic.closed %}{% if message.author.username == signed_in_user or signed_in_user_can_edit_all %}<a class="pull-right" href="{% url 'topic' pk=topic.pk edit_message=message.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}{% endif %}</div>
 					<div class="panel-body">
 						{{ message.content |safe }}
 					</div>
 				{% else %}
-					<div class="panel-heading">Editing...<a class="pull-right" href="{% url 'topic' pk=topic.pk page=page %}">Cancel</a></div>
-					<div class="panel-body">
-						<form action="" method="post" novalidate>
-							{% csrf_token %}
-							<input type="hidden" name="edit_message_pk" value="{{ message.pk }}" />
-							<input type="hidden" name="page" value="{{ page }}" />
-							{% bootstrap_form edit_message_form %}
-							{% buttons %}
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-pencil" aria-hidden="true"></i> Edit
-								</button>
-							{% endbuttons %}
-						</form>
-					</div>
+					{% if not topic.closed %}
+						<div class="panel-heading">Editing...<a class="pull-right" href="{% url 'topic' pk=topic.pk page=page %}">Cancel</a></div>
+						<div class="panel-body">
+							<form action="" method="post" novalidate>
+								{% csrf_token %}
+								<input type="hidden" name="edit_message_pk" value="{{ message.pk }}" />
+								<input type="hidden" name="page" value="{{ page }}" />
+								{% bootstrap_form edit_message_form %}
+								{% buttons %}
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-pencil" aria-hidden="true"></i> Edit
+									</button>
+								{% endbuttons %}
+							</form>
+						</div>
+					{% else %}
+						This topic was closed, you can't edit a message.
+					{% endif %}
 				{% endif %}
 			</div>
 		{% endfor %}
@@ -67,16 +74,20 @@
 {% if new_message_form %}
 	<div class="row">
 		<div class="col-md-12">
-			<form action="" method="post" novalidate>
-				{% csrf_token %}
-				<input type="hidden" name="page" value="{{ page }}" />
-				{% bootstrap_form new_message_form %}
-				{% buttons %}
-					<button type="submit" class="btn btn-primary">
-						<i class="fa fa-pencil" aria-hidden="true"></i> Write
-					</button>
-				{% endbuttons %}
-			</form>
+			{% if not topic.closed %}
+				<form action="" method="post" novalidate>
+					{% csrf_token %}
+					<input type="hidden" name="page" value="{{ page }}" />
+					{% bootstrap_form new_message_form %}
+					{% buttons %}
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-pencil" aria-hidden="true"></i> Write
+						</button>
+					{% endbuttons %}
+				</form>
+			{% else %}
+				This topic was closed, you can't write a new message.
+			{% endif %}
 		</div>
 	</div>
 {% endif %}
