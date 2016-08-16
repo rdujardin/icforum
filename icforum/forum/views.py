@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django_tables2 import RequestConfig
 from django.contrib.auth import authenticate, login, logout
+from django.conf import settings
 
 import datetime
 
@@ -44,6 +45,7 @@ def get_rand_pictures():
 
 
 def _render(request, template, extra):
+	extra['ic_forum_version'] = settings.IC_FORUM_VERSION
 	extra['rand_pictures'] = get_rand_pictures()
 	extra['signed_in_user'] = request.user.username if request.user.is_authenticated() else None
 	return render(request, template, extra)

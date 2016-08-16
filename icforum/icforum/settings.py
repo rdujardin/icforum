@@ -127,3 +127,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# Forum settings
+
+IC_FORUM_VERSION = '0.0.1-dev'
