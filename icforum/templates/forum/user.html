@@ -3,10 +3,22 @@
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
+		<div id="title">
+			<h2>
+				{{ user }} 
+			</h2>
+			{% if profile.banned %}
+				<span class="label label-danger">Banned</span>
+			{% endif %}
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">User</div>
+			<div class="panel-heading">Sign up date</div>
 			<div class="panel-body">
-				{{ user }}
+				{{ profile.signup_date }}
 			</div>
 		</div>
 	</div>

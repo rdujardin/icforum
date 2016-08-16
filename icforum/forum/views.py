@@ -246,8 +246,10 @@ def topic(request, pk, edit_message=None, page=1):
 
 def user(request, pk):
 	user = get_object_or_404(User.objects.all(), pk=pk)
+	profile = Profile.objects.get(user=user)
 
 	return _render(request, 'forum/user.html', {
 		'user': user,
+		'profile': profile,
 	})
 
