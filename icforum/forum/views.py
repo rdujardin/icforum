@@ -86,7 +86,7 @@ def home(request):
 	})
 
 
-def tag(request, pk):
+def tag(request, pk, page=1):
 	tag = get_object_or_404(Tag.objects.all(), pk=pk)
 
 	post_it_topics = Topic.objects.filter(tags__id__exact=tag.id, post_it=True).order_by('created')
@@ -100,6 +100,19 @@ def tag(request, pk):
 
 		if not allowed:
 			return redirect(home)
+
+	# Determine which page to display and how many pages exist in tag
+	page = int(page)
+	num_pages = len(regular_topics) // 10 + 1
+
+	# Select the topics standing on the right page
+	try:
+		display_topics = regular_topics[(page-1)*10:page*10]
+	except:
+		try:
+			display_topics = regular_topics[(page-1)*10:]
+		except:
+			display_topics = []
 
 	def set_last_message(topic_set):
 		for topic in topic_set:
@@ -115,7 +128,9 @@ def tag(request, pk):
 	return _render(request, 'forum/tag.html', {
 		'tag': tag,
 		'post_it_topics': post_it_topics,
-		'regular_topics': regular_topics,
+		'regular_topics': display_topics,
+		'page': page,
+		'num_pages': range(1, num_pages + 1),
 	})
 
 
