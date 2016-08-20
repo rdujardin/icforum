@@ -17,6 +17,19 @@ class SignInForm(forms.Form):
 			if profile.banned:
 				raise forms.ValidationError('You have been banned, try again later')
 
+class ChangeAvatarForm(forms.Form):
+	avatar = forms.ImageField(label='Image file (max. 512 kb)')
+
+	def clean_content(self):
+		content = self.cleaned_data['content']
+		content_type = content.content_type.split('/')[0]
+		if content_type in settings.CONTENT_TYPES:
+			if content.size > settings.MAX_UPLOAD_SIZE:
+				raise forms.ValidationError('File is too big')
+		else:
+			raise forms.ValidationError('File type is not supported')
+		return content
+
 class TopicForm(forms.ModelForm):
 	class Meta:
 		model = Topic

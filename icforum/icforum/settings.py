@@ -128,6 +128,14 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# Media files (avatars..)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Forum settings
 
 IC_FORUM_VERSION = '0.0.1-dev'
+
+CONTENT_TYPES = ['image']
+MAX_UPLOAD_SIZE = '524288'

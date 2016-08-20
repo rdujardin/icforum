@@ -171,3 +171,17 @@ td {
 .pad2x {
 	padding: 1em;
 }
+
+.avatar {
+	float: left;
+	background-color: white;
+	border: 1px solid #333355;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	width: 100px;
+	height: 100px;
+}
+
+.msg_body {
+	margin-left: 105px;
+}

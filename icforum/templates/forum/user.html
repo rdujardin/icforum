@@ -1,5 +1,5 @@
 {% extends "forum/_base.html" %}
-{% load render_table from django_tables2 %}
+{% load bootstrap3 %}
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
@@ -19,6 +19,24 @@
 			<div class="panel-heading">Sign up date</div>
 			<div class="panel-body">
 				{{ profile.signup_date }}
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Avatar</div>
+			<div class="panel-body">
+				<img alt="avatar" src="{% if profile.avatar %}/media/{{ profile.avatar }}{% else %}/static/anonymous_avatar.png{% endif %}" width="100px" height="100px" />
+				{% if can_edit %}
+					<br />
+					<form action="" method="post" enctype="multipart/form-data" novalidate>
+						{% csrf_token %}
+						{% bootstrap_form change_avatar_form %}
+						{% buttons %}
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-pencil" aria-hidden="true"></i> Change
+							</button>
+						{% endbuttons %}
+					</form>
+				{% endif %}
 			</div>
 		</div>
 	</div>

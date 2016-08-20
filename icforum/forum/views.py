@@ -248,8 +248,21 @@ def user(request, pk):
 	user = get_object_or_404(User.objects.all(), pk=pk)
 	profile = Profile.objects.get(user=user)
 
+	can_edit = user == request.user
+
+	if request.method == 'POST':
+		change_avatar_form = ChangeAvatarForm(request.POST, request.FILES)
+		if change_avatar_form.is_valid() and can_edit:
+			profile.avatar.save(change_avatar_form.cleaned_data['avatar'].name, change_avatar_form.cleaned_data['avatar'])
+			change_avatar_form = ChangeAvatarForm()
+
+	else:
+		change_avatar_form = ChangeAvatarForm()
+
 	return _render(request, 'forum/user.html', {
 		'user': user,
 		'profile': profile,
+		'can_edit': can_edit,
+		'change_avatar_form': change_avatar_form,
 	})
 

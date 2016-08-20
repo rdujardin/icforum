@@ -34,7 +34,8 @@
 				{% if edit_message_pk != message.pk %}
 					<div class="panel-heading small"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.show_edited %}(edited : {{ message.edited }}){% endif %}{% if not topic.closed %}{% if message.author.username == signed_in_user or signed_in_user_can_edit_all %}<a class="pull-right" href="{% url 'topic' pk=topic.pk edit_message=message.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}{% endif %}</div>
 					<div class="panel-body">
-						{{ message.content |safe }}
+						<img alt="avatar" src="{% if message.author.profile.avatar %}/media/{{ message.author.profile.avatar }}{% else %}/static/anonymous_avatar.png{% endif %}" width="100px" height="100px" class="avatar" />
+						<div class="msg_body">{{ message.content |safe }}</div>
 					</div>
 				{% else %}
 					{% if not topic.closed %}
