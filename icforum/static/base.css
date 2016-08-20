@@ -173,15 +173,7 @@ td {
 }
 
 .avatar {
-	float: left;
-	background-color: white;
-	border: 1px solid #333355;
-	margin-right: 5px;
-	margin-bottom: 5px;
-	width: 100px;
-	height: 100px;
-}
-
-.msg_body {
-	margin-left: 105px;
+	border-radius: 50% !important;
+	border: 1px dotted #cccccc;
+	box-shadow: 0px 0px 10px silver;
 }

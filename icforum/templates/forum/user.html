@@ -24,7 +24,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Avatar</div>
 			<div class="panel-body">
-				<img alt="avatar" src="{% if profile.avatar %}/media/{{ profile.avatar }}{% else %}/static/anonymous_avatar.png{% endif %}" width="100px" height="100px" />
+				<img alt="avatar" src="{% if profile.avatar %}/media/{{ profile.avatar }}{% else %}/static/anonymous_avatar.png{% endif %}" style="max-width: 100px; max-height: 100px;" class="avatar" />
 				{% if can_edit %}
 					<br />
 					<form action="" method="post" enctype="multipart/form-data" novalidate>
