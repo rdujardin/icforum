@@ -13,6 +13,9 @@
 			{% for tag in tags %}
 				<span class="label label-primary"><a href="{% url 'tag' pk=tag.pk %}">{{ tag }}</a></span>
 			{% endfor %}
+			{% for private_viewer in private_viewers %}
+				<span class="label label-warning"><a href="{% url 'user' pk=private_viewer.pk %}">{{ private_viewer }}</a></span>
+			{% endfor %}
 		</div>
 	</div>
 </div>

@@ -7,6 +7,11 @@ urlpatterns = [
 	url(r'^signin/$', views.sign_in, name='sign_in'),
 	url(r'^signout/$', views.sign_out, name='sign_out'),
 
+	url(r'^mail/$', views.mail, name='mail'),
+	url(r'^mail/page/(?P<page>\d+)/$', views.mail, name='mail'),
+	url(r'^mail/new/$', views.new_mail, name='new_mail'),
+	url(r'^mail/new/(?P<pk>\d+)/$', views.new_mail, name='new_mail'),
+
 	url(r'^tag/(?P<pk>\d+)/$', views.tag, name='tag'),
 	url(r'^tag/(?P<pk>\d+)/page/(?P<page>\d+)/$', views.tag, name='tag'),
 

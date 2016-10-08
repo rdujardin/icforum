@@ -38,6 +38,14 @@ class TopicForm(forms.ModelForm):
 	tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all())
 	first_message = forms.CharField(widget=forms.Textarea)
 
+class MailForm(forms.ModelForm):
+	class Meta:
+		model = Topic
+		fields = ['title', 'private_viewers']
+
+	private_viewers = forms.ModelMultipleChoiceField(queryset=User.objects.all())
+	first_message = forms.CharField(widget=forms.Textarea)
+
 class NewMessageForm(forms.ModelForm):
 	class Meta:
 		model = Message

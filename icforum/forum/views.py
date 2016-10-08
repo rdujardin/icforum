@@ -134,6 +134,62 @@ def tag(request, pk, page=1):
 	})
 
 
+def mail(request, page=1):
+
+	user = request.user
+	if user.is_anonymous():
+		return redirect(home)
+
+	profile = get_object_or_404(Profile.objects.all(), user=user)
+
+	topics = Topic.objects.filter(private_viewers__id=user.id).order_by('updated').reverse()
+
+	# Determine which page to display and how many pages exist in tag
+	page = int(page)
+	num_pages = len(topics) // 10 + 1
+
+	# Select the topics standing on the right page
+	try:
+		display_topics = topics[(page-1)*10:page*10]
+	except:
+		try:
+			display_topics = topics[(page-1)*10:]
+		except:
+			display_topics = []
+
+	return _render(request, 'forum/mail.html', {
+		'user': user,
+		'profile': profile,
+		'topics': display_topics,
+		'page': page,
+		'num_pages': range(1, num_pages + 1),
+	})
+
+
+def new_mail(request, pk=0):
+	if request.method == 'POST':
+		form = MailForm(request.POST)
+		if form.is_valid():
+			form.instance.author = request.user
+			form.instance.save()
+			first_message = Message(topic=form.instance, author=request.user, content=sanitize_html(form.cleaned_data['first_message']))
+			first_message.save()
+			for viewer in form.cleaned_data['private_viewers']:
+				form.instance.private_viewers.add(viewer)
+			if not request.user in form.cleaned_data['private_viewers']:
+				form.instance.private_viewers.add(request.user)
+			return redirect(topic, pk=form.instance.pk)
+	else:
+		if pk != 0:
+			form = MailForm({'private_viewers': pk})
+		else:
+			form = MailForm()
+
+	return _render(request, 'forum/new_topic.html', {
+		'form': form,
+	})
+
+
 def new_topic(request):
 	if request.method == 'POST':
 		form = TopicForm(request.POST)
@@ -169,6 +225,12 @@ def topic(request, pk, edit_message=None, page=1):
 					allowed = True
 			if not allowed:
 				return redirect(home)
+
+	# Check if the topic is public or if the user can see it
+	private_viewers = topic.private_viewers.all()
+	can_see = (not private_viewers) or request.user in private_viewers
+	if not can_see:
+		return redirect(home)
 
 	# Get messages in topic
 	messages = Message.objects.filter(topic=topic).order_by('posted')
@@ -249,6 +311,7 @@ def topic(request, pk, edit_message=None, page=1):
 	return _render(request, 'forum/topic.html', {
 		'topic': topic,
 		'tags': tags,
+		'private_viewers': private_viewers,
 		'messages': display_messages,
 		'page': page,
 		'num_pages': range(1, num_pages + 1),
@@ -280,4 +343,3 @@ def user(request, pk):
 		'can_edit': can_edit,
 		'change_avatar_form': change_avatar_form,
 	})
-
