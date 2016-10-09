@@ -7,7 +7,7 @@
 		{% for tag in tags %}
 
 			<div class="row tile">
-				<div class="col-md-12" style="padding: 10px; background-image: url('{% if tag.cover_image %}{{ tag.cover_image }}{% endif %}'); background-position: right; background-size: 40% 300%; background-repeat: no-repeat;">
+				<div class="col-md-12 tag_tile" style="background-image: linear-gradient(to right, rgba(238,238,255,1.0), rgba(238,238,255,0.0)), url('{% if tag.cover_image %}{{ tag.cover_image }}{% endif %}');" onmouseover="this.style.backgroundImage='linear-gradient(to right, rgba(51,51,85,1.0), rgba(51,51,85,0.0)), url(\'{% if tag.cover_image %}{{ tag.cover_image }}{% endif %}\')';" onmouseout="this.style.backgroundImage='linear-gradient(to right, rgba(238,238,255,1.0), rgba(238,238,255,0.0)), url(\'{% if tag.cover_image %}{{ tag.cover_image }}{% endif %}\')';">
 					<div class="row"><div class="col-md-12"><a href="{% url 'tag' pk=tag.pk %}" class="goto">{{ tag }}</a></div></div>
 					<div class="row small"><div class="col-md-12">
 						{% if tag.last_message %}

@@ -136,6 +136,13 @@ td {
 	color: silver;
 }
 
+.tag_tile {
+	padding: 10px;
+	background-position: right;
+	background-size: 40% 300%;
+	background-repeat: no-repeat;
+}
+
 .small {
 	font-size: 0.8em;
 }
