@@ -37,16 +37,8 @@ def sanitize_html(content):
 	)
 
 
-def get_rand_pictures():
-	return [
-		random.choice([('/static/PgkkRd4.jpg', 0, 340)]),
-		random.choice(['/static/panelpics/took_u_long_enough___by_callergi-d8wdu85.jpg', '/static/panelpics/hengsha_morning_by_najtkriss-d4aelk1.jpg', '/static/panelpics/53aba4931a206f6fe02bffe072bc287a.jpg', 'static/panelpics/v_for_vendetta_teaser_c_by_sahinduezguen-d4cdb87.jpg']),
-	]
-
-
 def _render(request, template, extra):
 	extra['ic_forum_version'] = settings.IC_FORUM_VERSION
-	extra['rand_pictures'] = get_rand_pictures()
 	extra['signed_in_user'] = request.user.username if request.user.is_authenticated() else None
 	return render(request, template, extra)
 
