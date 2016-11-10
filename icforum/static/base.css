@@ -195,3 +195,12 @@ td {
 	border: 1px dotted #cccccc;
 	box-shadow: 0px 0px 10px silver;
 }
+
+.default {
+	color: grey !important;
+	font-style: italic;
+}
+
+.chapter-nav {
+	text-align: center;
+}

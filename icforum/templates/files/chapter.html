@@ -12,6 +12,24 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
+		<nav class="chapter-nav" aria-label="Chapter navigation">
+			<ul class="pagination">
+				{% if previous_chapter %}
+					<li><a href="{% url 'chapter' pk=previous_chapter.pk %}" aria-label="Previous"><span aria-hidden="true">&laquo; {{ previous_chapter }}</span></a></li>
+				{% else %}
+					<li><span class="default" aria-hidden="true">{{ chapter }}</span></li>
+				{% endif %}
+				{% if next_chapter %}
+					<li><a href="{% url 'chapter' pk=next_chapter.pk %}" aria-label="Next"><span aria-hidden="true">{{ next_chapter }} &raquo;</span></a></li>
+				{% else %}
+					<li><span class="default" aria-hidden="true">{{ chapter }}</span></li>
+				{% endif %}
+			</ul>
+		</nav>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
 		<div id="title">
 			<h2>
 				{{ chapter }} 
@@ -29,6 +47,24 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<nav class="chapter-nav" aria-label="Chapter navigation">
+			<ul class="pagination">
+				{% if previous_chapter %}
+					<li><a href="{% url 'chapter' pk=previous_chapter.pk %}" aria-label="Previous"><span aria-hidden="true">&laquo; {{ previous_chapter }}</span></a></li>
+				{% else %}
+					<li><span aria-hidden="true">{{ chapter }}</span></li>
+				{% endif %}
+				{% if next_chapter %}
+					<li><a href="{% url 'chapter' pk=next_chapter.pk %}" aria-label="Next"><span aria-hidden="true">{{ next_chapter }} &raquo;</span></a></li>
+				{% else %}
+					<li><span aria-hidden="true">{{ chapter }}</span></li>
+				{% endif %}
+			</ul>
+		</nav>
 	</div>
 </div>
 {% endblock %}

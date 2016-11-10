@@ -16,6 +16,8 @@ from urllib.parse import urlparse
 
 from users.common import sanitize_html, _render
 
+from django.core.exceptions import ObjectDoesNotExist
+
 def list_files(request, page=1):
 
 	files = File.objects.all()
@@ -91,7 +93,19 @@ def chapter(request, pk):
 			if not allowed:
 				return redirect(home)
 
+	# Get previous and next chapter
+	try:
+		previous_chapter = Chapter.objects.get(file=chapter.file, position=chapter.position - 1)
+	except ObjectDoesNotExist:
+		previous_chapter = None
+	try :
+		next_chapter = Chapter.objects.get(file=chapter.file, position=chapter.position + 1)
+	except ObjectDoesNotExist:
+		next_chapter = None
+
 	# Render
 	return _render(request, 'files/chapter.html', {
 		'chapter': chapter,
+		'previous_chapter': previous_chapter,
+		'next_chapter': next_chapter,
 	})
