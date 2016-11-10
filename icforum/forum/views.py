@@ -6,61 +6,14 @@ from django.conf import settings
 import datetime
 
 from .models import *
-from .tables import *
+from users.models import *
 from .forms import *
 
 import random
 import bleach
 from urllib.parse import urlparse
 
-
-def sanitize_html(content):
-	def filter_iframe_src(name, value):
-		if name in ('width', 'height', 'frameborder', 'allowfullscreen'):
-			return True
-		elif name == 'src':
-			p = urlparse(value)
-			return (not p.netloc) or p.netloc == 'youtube.com' or p.netloc == 'www.youtube.com'
-		else:
-			return False
-
-	return bleach.clean(content,
-		tags=['iframe', 'a', 'abbr', 'acronym', 'address', 'area', 'b', 'bdo', 'big', 'blockquote', 'br', 'button', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'dd', 'del', 'dfn', 'dir', 'div', 'dl', 'dt', 'em', 'fieldset', 'font', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'map', 'menu', 'ol', 'optgroup', 'option', 'p', 'pre', 'q', 's', 'samp', 'select', 'small', 'span', 'strike', 'strong', 'sub', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'u', 'tr', 'tt', 'u', 'ul', 'var'],
-		attributes={
-			'*': ['class', 'id', 'style'],
-			'iframe': filter_iframe_src,
-			'a': ['href'],
-			'font': ['color', 'face', 'size'],
-			'img': ['align', 'alt', 'height', 'src', 'title', 'width'],
-		},
-		styles=['color', 'text-align', 'background-color']
-	)
-
-
-def _render(request, template, extra):
-	extra['ic_forum_version'] = settings.IC_FORUM_VERSION
-	extra['signed_in_user'] = request.user.username if request.user.is_authenticated() else None
-	return render(request, template, extra)
-
-
-def sign_in(request):
-	if request.method == 'POST':
-		form = SignInForm(request.POST)
-		if form.is_valid():
-			user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-			login(request, user)
-			return redirect(request.POST['next'])
-	else:
-		form = SignInForm()
-	return _render(request, 'forum/sign_in.html', {
-		'form': form,
-		'next': request.POST['next'] if 'next' in request.POST else (request.GET['next'] if 'next' in request.GET else '/'),
-	})
-
-
-def sign_out(request):
-	logout(request)
-	return redirect(request.GET['next'] if 'next' in request.GET else '/')
+from users.common import sanitize_html, _render
 
 
 def home(request):
@@ -311,27 +264,4 @@ def topic(request, pk, edit_message=None, page=1):
 		'edit_message_pk': edit_message_pk,
 		'edit_message_form': edit_message_form,
 		'signed_in_user_can_edit_all': request.user.has_perm('forum.edit_not_owned_message'),
-	})
-
-
-def user(request, pk):
-	user = get_object_or_404(User.objects.all(), pk=pk)
-	profile = Profile.objects.get(user=user)
-
-	can_edit = user == request.user
-
-	if request.method == 'POST':
-		change_avatar_form = ChangeAvatarForm(request.POST, request.FILES)
-		if change_avatar_form.is_valid() and can_edit:
-			profile.avatar.save(change_avatar_form.cleaned_data['avatar'].name, change_avatar_form.cleaned_data['avatar'])
-			change_avatar_form = ChangeAvatarForm()
-
-	else:
-		change_avatar_form = ChangeAvatarForm()
-
-	return _render(request, 'forum/user.html', {
-		'user': user,
-		'profile': profile,
-		'can_edit': can_edit,
-		'change_avatar_form': change_avatar_form,
 	})

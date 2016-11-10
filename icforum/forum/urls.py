@@ -4,9 +4,6 @@ from . import views
 urlpatterns = [
 	url(r'^$', views.home, name='home'),
 
-	url(r'^signin/$', views.sign_in, name='sign_in'),
-	url(r'^signout/$', views.sign_out, name='sign_out'),
-
 	url(r'^mail/$', views.mail, name='mail'),
 	url(r'^mail/page/(?P<page>\d+)/$', views.mail, name='mail'),
 	url(r'^mail/new/$', views.new_mail, name='new_mail'),
@@ -20,5 +17,4 @@ urlpatterns = [
 	url(r'^topic/(?P<pk>\d+)/page/(?P<page>\d+)/$', views.topic, name='topic'),
 	url(r'^topic/(?P<pk>\d+)/edit/(?P<edit_message>\d+)/$', views.topic, name='topic'),
 
-	url(r'^user/(?P<pk>\d+)/$', views.user, name='user'),
 ]
