@@ -1,0 +1,46 @@
+{% extends "forum/_base.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<h2 id="title">{{ file }}</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+
+		{% for chapter in chapters %}
+
+			<div class="row tile pad2x">
+				<div class="col-md-12">
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-12">
+									<strong><a href="{% url 'chapter' pk=chapter.pk %}" class="goto">{{ chapter.position }} - {{ chapter }}</a></strong>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		{% endfor %}
+
+	</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+	$(document).ready(function(){
+		$('.tile').click(function(){
+			window.location = $(this).find('.goto').attr('href');
+		});
+	});
+</script>
+
+{% endblock %}

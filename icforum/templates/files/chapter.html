@@ -1,0 +1,25 @@
+{% extends "forum/_base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<div id="title">
+			<h2>
+				{{ chapter }} 
+			</h2>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading small"></div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12"><div class="msg_body">{{ chapter.content |safe }}</div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
