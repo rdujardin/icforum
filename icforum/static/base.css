@@ -139,6 +139,10 @@ td {
 	color: silver;
 }
 
+.tile .label-primary a {
+	color: white;
+}
+
 .tag_tile {
 	padding: 10px;
 	background-position: right;
