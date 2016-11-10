@@ -31,6 +31,7 @@ body {
 
 #main_disclaimer {
 	margin-bottom: 20px;
+	text-align: center;
 }
 
 #main_disclaimer .bg-danger {
