@@ -27,10 +27,12 @@
 	<body>
 		<header class="container-fluid" style="background-image: url('/static/PgkkRd4.jpg'); background-position: 0px 340px;">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-2">
 					<a href="{% url 'home' %}"><img src="/static/10narsh2.png" class="header_logo" alt="Infinite Connection" img-responsive" /></a>
-					<span class="glass"><a href="{% url 'list_files' %}">Files</a></span>
-					<span class="glass"><a href="{% url 'home' %}">Forums</a></span>
+					<span class="pull-right glass"><a href="{% url 'list_files' %}">Files</a></span>
+					<span class="pull-right glass"><a href="{% url 'home' %}">Forums</a></span>
+				</div>
+				<div class="col-md-3 col-md-offset-7">
 					{% if signed_in_user %}
 						<span class="pull-right glass">{{ signed_in_user }} - <a href="{% url 'sign_out' %}?next={{ request.path }}">Sign out</a></span>
 					{% else %}
