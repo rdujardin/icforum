@@ -9,5 +9,6 @@ urlpatterns = [
 	url(r'^file/(?P<pk>\d+)/$', views.file, name='file'),
 
 	url(r'^chapter/(?P<pk>\d+)/$', views.chapter, name='chapter'),
+	url(r'^chapter/(?P<pk>\d+)/edit/(?P<edit>\d+)$', views.chapter, name='chapter'),
 
 ]
