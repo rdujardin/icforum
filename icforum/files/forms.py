@@ -10,14 +10,7 @@ class NewFileForm(forms.ModelForm):
 
 	tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all())
 
-class NewChapterForm(forms.ModelForm):
-	class Meta:
-		model = Chapter
-		fields = ['title', 'position', 'content']
-
-	content = forms.CharField(label="Chapter content", widget=forms.Textarea)
-
-class EditChapterForm(forms.ModelForm):
+class ChapterForm(forms.ModelForm):
 	class Meta:
 		model = Chapter
 		fields = ['title', 'position', 'content']

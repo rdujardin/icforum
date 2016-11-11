@@ -9,7 +9,6 @@ from .models import *
 from users.models import *
 from forum.views import home
 from .forms import *
-from forum.forms import NewMessageForm
 
 import random
 import bleach
@@ -118,9 +117,9 @@ def chapter(request, pk, edit=0):
 	# Chapter edit form
 	if edit == '1' and can_manage:
 		if request.method == 'GET':
-			edit_chapter_form = EditChapterForm(instance=chapter)
+			edit_chapter_form = ChapterForm(instance=chapter)
 		else:
-			edit_chapter_form = EditChapterForm(request.POST)
+			edit_chapter_form = ChapterForm(request.POST)
 			if edit_chapter_form.is_valid():
 				chapter.content = sanitize_html(edit_chapter_form.cleaned_data['content'])
 				chapter.file.updated = datetime.datetime.now()
