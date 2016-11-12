@@ -1,6 +1,8 @@
 # icforum
 Infinite Connection Forum
 
+Current version : 0.1
+
 http://infiniteconnection.fr
 
 
@@ -15,3 +17,4 @@ http://infiniteconnection.fr
  * files/tutorials, hierarchical organization of chapters, complex content, WYSIWIG editor
  * administration panel
  * modern responsive design, adapted to every media (large screen, tablet, mobile, ..)
+ * internationalized, available in english and french
