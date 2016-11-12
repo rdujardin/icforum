@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate
+from django.utils.translation import ugettext as _
 
 from .models import *
 
@@ -15,4 +16,4 @@ class ChapterForm(forms.ModelForm):
 		model = Chapter
 		fields = ['title', 'position', 'content']
 
-	content = forms.CharField(label="Chapter content", widget=forms.Textarea)
+	content = forms.CharField(label=_("Chapter content"), widget=forms.Textarea)

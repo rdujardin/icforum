@@ -1,5 +1,6 @@
 {% extends "forum/_base.html" %}
 {% load render_table from django_tables2 %}
+{% load i18n %}
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
@@ -15,7 +16,7 @@
 							 by 
 							<a href="{% url 'user' pk=tag.last_message.author.pk %}">{{ tag.last_message.author }}</a> 
 						{% else %}
-							No messages
+							{% trans "No messages" %}
 						{% endif %}
 					</div></div>
 				</div>

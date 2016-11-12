@@ -1,9 +1,10 @@
 {% extends "forum/_base.html" %}
 {% load bootstrap3 %}
+{% load i18n %}
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
-		<h2>New topic</h2>
+		<h2>{% trans "New topic" %}</h2>
 	</div>
 </div>
 <div class="row">
@@ -13,7 +14,7 @@
 			{% bootstrap_form form %}
 			{% buttons %}
 				<button type="submit" class="btn btn-primary">
-					{% bootstrap_icon 'star' %} Create
+					{% bootstrap_icon 'star' %} {% trans "Create" %}
 				</button>
 			{% endbuttons %}
 		</form>

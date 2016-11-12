@@ -2,6 +2,7 @@ import bleach
 from urllib.parse import urlparse
 from django.conf import settings
 from django.shortcuts import render
+from django.utils.translation import get_language
 
 def sanitize_html(content):
 	def filter_iframe_src(name, value):
@@ -29,4 +30,5 @@ def sanitize_html(content):
 def _render(request, template, extra):
 	extra['ic_forum_version'] = settings.IC_FORUM_VERSION
 	extra['signed_in_user'] = request.user.username if request.user.is_authenticated() else None
+	extra['current_language'] = get_language()
 	return render(request, template, extra)

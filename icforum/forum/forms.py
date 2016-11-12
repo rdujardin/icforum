@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate
+from django.utils.translation import ugettext as _
 
 from .models import *
 
@@ -24,11 +25,11 @@ class NewMessageForm(forms.ModelForm):
 		model = Message
 		fields = ['content']
 
-	content = forms.CharField(label="New message", widget=forms.Textarea)
+	content = forms.CharField(label=_("New message"), widget=forms.Textarea)
 
 class EditMessageForm(forms.ModelForm):
 	class Meta:
 		model = Message
 		fields = ['content']
 
-	content = forms.CharField(label="Edit message", widget=forms.Textarea)
+	content = forms.CharField(label=_("Edit message"), widget=forms.Textarea)

@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-11 19:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: icforum/settings.py:125
+msgid "English"
+msgstr "Anglais"
+
+#: icforum/settings.py:126
+msgid "French"
+msgstr "Français"
+
+#: templates/files/chapter.html:8 templates/files/list_files.html:7
+#: templates/forum/_base.html:33
+msgid "Files"
+msgstr "Fichiers"
+
+#: templates/files/chapter.html:45 templates/forum/topic.html:48
+msgid "Editing"
+msgstr "Edition"
+
+#: templates/files/chapter.html:45 templates/forum/topic.html:48
+msgid "Cancel"
+msgstr "Annuler"
+
+#: templates/files/chapter.html:52 templates/forum/topic.html:57
+msgid "Edit"
+msgstr "Editer"
+
+#: templates/files/list_files.html:45
+msgid "Last update"
+msgstr "Dernière modification"
+
+#: templates/forum/_base.html:34
+msgid "Forums"
+msgstr "Forums"
+
+#: templates/forum/_base.html:38
+msgid "Sign out"
+msgstr "Déconnexion"
+
+#: templates/forum/_base.html:40
+msgid "Sign in"
+msgstr "Connexion"
+
+#: templates/forum/_base.html:49
+msgid ""
+"Warning, this forum is currently in development. If you encounter bugs or "
+"have suggestions, please send an email to raphael dot dujardin at "
+"infiniteconnection dot fr."
+msgstr ""
+"Attention, ce forum est en développement. Si vous rencontrez des bugs ou "
+"avez des suggestions, veuillez envoyer un email à raphael dot dujardin at "
+"infiniteconnection dot fr."
+
+#: templates/forum/_base.html:58 templates/forum/new_topic.html:7
+msgid "New topic"
+msgstr "Nouveau sujet"
+
+#: templates/forum/_base.html:64 templates/forum/mail.html:8
+msgid "Mails"
+msgstr "Mails"
+
+#: templates/forum/_base.html:77
+msgid ""
+"The site is under maintenance. We apologize for the disturbment, come back "
+"later or contact the staff at support at infiniteconnection dot com."
+msgstr ""
+"Le site est en maintenance. Toutes nos excuses pour le désagrément,"
+"veuillez revenir un peu plus tard ou contacter le staff à support at"
+" infiniteconnection dot com."
+
+#: templates/forum/_base.html:87
+msgid "Go Top"
+msgstr "Aller en haut"
+
+#: templates/forum/_base.html:88
+msgid "see on GitHub"
+msgstr "voir sur GitHub"
+
+#: templates/forum/home.html:19 templates/forum/mail.html:60
+#: templates/forum/tag.html:46 templates/forum/tag.html:80
+msgid "No messages"
+msgstr "Pas de messages"
+
+#: templates/forum/mail.html:13
+msgid "Write mail"
+msgstr "Ecrire mail"
+
+#: templates/forum/mail.html:21
+msgid "Private messages"
+msgstr "Messages privés"
+
+#: templates/forum/mail.html:58 templates/forum/tag.html:44
+#: templates/forum/tag.html:78
+msgid "Last response"
+msgstr "Dernière réponse"
+
+#: templates/forum/mail.html:58 templates/forum/tag.html:44
+#: templates/forum/tag.html:78
+msgid "by"
+msgstr "par"
+
+#: templates/forum/new_topic.html:17
+msgid "Create"
+msgstr "Créer"
+
+#: templates/forum/topic.html:12
+msgid "Closed"
+msgstr "Fermé"
+
+#: templates/forum/topic.html:39
+msgid "edited"
+msgstr "édité"
+
+#: templates/forum/topic.html:63
+msgid "This topic was closed, you can't edit a message."
+msgstr "Ce sujet a été fermé, vous ne pouvez pas éditer de message."
+
+#: templates/forum/topic.html:91
+msgid "Write"
+msgstr "Ecrire"
+
+#: templates/forum/topic.html:96
+msgid "This topic was closed, you can't write a new message."
+msgstr "Ce sujet a été fermé, vous ne pouvez pas écrire de nouveau message."
+
+#: templates/users/sign_in.html:18
+msgid "Submit"
+msgstr "Soumettre"
+
+#: templates/users/user.html:12
+msgid "Banned"
+msgstr "Banni"
+
+#: templates/users/user.html:20
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/users/user.html:22
+msgid "Send mail"
+msgstr "Envoyer un mail"
+
+#: templates/users/user.html:26
+msgid "Sign up date"
+msgstr "Date d'inscription"
+
+#: templates/users/user.html:32
+msgid "Avatar"
+msgstr "Avatar"
+
+#: templates/users/user.html:42
+msgid "Change"
+msgstr "Modifier"

@@ -1,5 +1,6 @@
 {% extends "forum/_base.html" %}
 {% load bootstrap3 %}
+{% load i18n %}
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
@@ -8,7 +9,7 @@
 				{{ topic }} 
 			</h2>
 			{% if topic.closed %}
-				<span class="label label-danger">Closed</span>
+				<span class="label label-danger">{% trans "Closed" %}</span>
 			{% endif %}
 			{% for tag in tags %}
 				<span class="label label-primary"><a href="{% url 'tag' pk=tag.pk %}">{{ tag }}</a></span>
@@ -35,7 +36,7 @@
 		{% for message in messages %}
 			<div class="panel panel-default">
 				{% if edit_message_pk != message.pk %}
-					<div class="panel-heading small"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.show_edited %}(edited : {{ message.edited }}){% endif %}{% if not topic.closed %}{% if message.author.username == signed_in_user or signed_in_user_can_edit_all %}<a class="pull-right" href="{% url 'topic' pk=topic.pk edit_message=message.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}{% endif %}</div>
+					<div class="panel-heading small"><a href="{% url 'user' pk=message.author.pk %}">{{ message.author }}</a> - {{ message.posted }} {% if message.show_edited %}({% trans "edited" %} : {{ message.edited }}){% endif %}{% if not topic.closed %}{% if message.author.username == signed_in_user or signed_in_user_can_edit_all %}<a class="pull-right" href="{% url 'topic' pk=topic.pk edit_message=message.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>{% endif %}{% endif %}</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-2 col-sm-2 col-xs-2"><span class="thumbnail" style="border: 0;"><img alt="avatar" src="{% if message.author.profile.avatar %}/media/{{ message.author.profile.avatar }}{% else %}/static/anonymous_avatar.png{% endif %}" class="img-responsive avatar" /></span></div>
@@ -44,7 +45,7 @@
 					</div>
 				{% else %}
 					{% if not topic.closed %}
-						<div class="panel-heading">Editing...<a class="pull-right" href="{% url 'topic' pk=topic.pk page=page %}">Cancel</a></div>
+						<div class="panel-heading">{% trans "Editing"%}...<a class="pull-right" href="{% url 'topic' pk=topic.pk page=page %}">{% trans "Cancel" %}</a></div>
 						<div class="panel-body">
 							<form action="" method="post" novalidate>
 								{% csrf_token %}
@@ -53,13 +54,13 @@
 								{% bootstrap_form edit_message_form %}
 								{% buttons %}
 									<button type="submit" class="btn btn-primary">
-										<i class="fa fa-pencil" aria-hidden="true"></i> Edit
+										<i class="fa fa-pencil" aria-hidden="true"></i> {% trans "Edit" %}
 									</button>
 								{% endbuttons %}
 							</form>
 						</div>
 					{% else %}
-						This topic was closed, you can't edit a message.
+						{% trans "This topic was closed, you can't edit a message." %}
 					{% endif %}
 				{% endif %}
 			</div>
@@ -87,12 +88,12 @@
 					{% bootstrap_form new_message_form %}
 					{% buttons %}
 						<button type="submit" class="btn btn-primary">
-							<i class="fa fa-pencil" aria-hidden="true"></i> Write
+							<i class="fa fa-pencil" aria-hidden="true"></i> {% trans "Write" %}
 						</button>
 					{% endbuttons %}
 				</form>
 			{% else %}
-				This topic was closed, you can't write a new message.
+				{% trans "This topic was closed, you can't write a new message." %}
 			{% endif %}
 		</div>
 	</div>

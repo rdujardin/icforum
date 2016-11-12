@@ -1,9 +1,10 @@
 {% extends "forum/_base.html" %}
 {% load render_table from django_tables2 %}
+{% load i18n %}
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
-		<h2 id="title">Files</h2>
+		<h2 id="title">{% trans "Files" %}</h2>
 	</div>
 </div>
 <div class="row">
@@ -41,7 +42,7 @@
 							</div>
 						</div>
 						<div class="col-md-4 small">
-							Last update : {{ file.updated }}
+							{% trans "Last update" %} : {{ file.updated }}
 						</div>
 					</div>
 

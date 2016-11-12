@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-11 19:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: users/forms.py:8
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: users/forms.py:9
+msgid "Password"
+msgstr "Mot de passe"
+
+#: users/forms.py:15
+msgid "Invalid username or password"
+msgstr "Identifiants invalides"
+
+#: users/forms.py:19
+msgid "You have been banned, try again later"
+msgstr "Vous avez été banni, veuillez réessayer plus tard"
+
+#: users/forms.py:22
+msgid "Image file (max. 512 kb)"
+msgstr "Fichier image (max. 512 kb)"
+
+#: users/forms.py:29
+msgid "File is too big"
+msgstr "Le fichier est trop volumineux"
+
+#: users/forms.py:31
+msgid "File type is not supported"
+msgstr "Le fichier est d'un type non-supporté"
+
+#: users/models.py:7
+msgid "Signed up"
+msgstr "Inscrit"
+
+#: users/models.py:8
+msgid "Is banned"
+msgstr "Est banni"
+
+#: users/models.py:9
+msgid "Avatar"
+msgstr "Avatar"

@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-11 19:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: forum/forms.py:28
+msgid "New message"
+msgstr "Nouveau message"
+
+#: forum/forms.py:35
+msgid "Edit message"
+msgstr "Editer message"
+
+#: forum/models.py:10
+msgid "Name"
+msgstr "Nom"
+
+#: forum/models.py:11
+msgid "On Homepage"
+msgstr "En page d'accueil"
+
+#: forum/models.py:12
+msgid "Allowed Groups"
+msgstr "Groupes Autorisés"
+
+#: forum/models.py:19
+msgid "Title"
+msgstr "Titre"
+
+#: forum/models.py:20 forum/models.py:39
+msgid "Author"
+msgstr "Auteur"
+
+#: forum/models.py:21
+msgid "Created"
+msgstr "Créé"
+
+#: forum/models.py:22
+msgid "Updated"
+msgstr "Modifié"
+
+#: forum/models.py:23
+msgid "Tags"
+msgstr "Tags"
+
+#: forum/models.py:25
+msgid "Post-it"
+msgstr "Post-it"
+
+#: forum/models.py:26
+msgid "Closed"
+msgstr "Fermé"
+
+#: forum/models.py:35
+msgid "Can edit messages authored by someone else"
+msgstr "Peut éditer les messages d'autres utilisateurs"
+
+#: forum/models.py:38
+msgid "Topic"
+msgstr "Sujet"
+
+#: forum/models.py:40
+msgid "Content"
+msgstr "Contenu"
+
+#: forum/models.py:41
+msgid "Posted"
+msgstr "Posté"
+
+#: forum/models.py:42
+msgid "Edited"
+msgstr "Edité"

@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
+from django.utils import translation
 
 import datetime
 
 from .models import *
 from .forms import *
+from forum.views import home
 
 import random
 
@@ -53,3 +55,11 @@ def user(request, pk):
 		'can_edit': can_edit,
 		'change_avatar_form': change_avatar_form,
 	})
+
+
+def set_language(request, lang):
+	langs = ['en', 'fr']
+	if lang in langs:
+		print(lang)
+		translation.activate(lang)
+	return redirect(home)

@@ -1,5 +1,6 @@
 {% extends "forum/_base.html" %}
 {% load bootstrap3 %}
+{% load i18n %}
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
@@ -8,7 +9,7 @@
 				{{ user }} 
 			</h2>
 			{% if profile.banned %}
-				<span class="label label-danger">Banned</span>
+				<span class="label label-danger">{% trans "Banned" %}</span>
 			{% endif %}
 		</div>
 	</div>
@@ -16,19 +17,19 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">Contact</div>
+			<div class="panel-heading">{% trans "Contact" %}</div>
 			<div class="panel-body">
-				<a href="{% url 'new_mail' pk=user.pk %}">Send mail</a>
+				<a href="{% url 'new_mail' pk=user.pk %}">{% trans "Send mail" %}</a>
 			</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Sign up date</div>
+			<div class="panel-heading">{% trans "Sign up date" %}</div>
 			<div class="panel-body">
 				{{ profile.signup_date }}
 			</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Avatar</div>
+			<div class="panel-heading">{% trans "Avatar" %}</div>
 			<div class="panel-body">
 				<img alt="avatar" src="{% if profile.avatar %}/media/{{ profile.avatar }}{% else %}/static/anonymous_avatar.png{% endif %}" style="max-width: 100px; max-height: 100px;" class="avatar" />
 				{% if can_edit %}
@@ -38,7 +39,7 @@
 						{% bootstrap_form change_avatar_form %}
 						{% buttons %}
 							<button type="submit" class="btn btn-primary">
-								<i class="fa fa-pencil" aria-hidden="true"></i> Change
+								<i class="fa fa-pencil" aria-hidden="true"></i> {% trans "Change" %}
 							</button>
 						{% endbuttons %}
 					</form>

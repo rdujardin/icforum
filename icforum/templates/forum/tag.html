@@ -1,5 +1,6 @@
 {% extends "forum/_base.html" %}
 {% load render_table from django_tables2 %}
+{% load i18n %}
 {% block content %}
 <div class="row">
 	<div class="col-md-12">
@@ -40,9 +41,9 @@
 						</div>
 						<div class="col-md-4 small">
 							{% if topic.last_message %}
-								<a href="{% url 'topic' pk=topic.pk %}">Last response ({{ topic.last_message.posted }})</a><br />by <a href="{% url 'user' pk=topic.last_message.author.pk %}">{{ topic.last_message.author }}</a>
+								<a href="{% url 'topic' pk=topic.pk %}">{% trans "Last response" %} ({{ topic.last_message.posted }})</a><br />{% trans "by" %} <a href="{% url 'user' pk=topic.last_message.author.pk %}">{{ topic.last_message.author }}</a>
 							{% else %}
-								No messages
+								{% trans "No messages" %}
 							{% endif %}
 						</div>
 					</div>
@@ -74,9 +75,9 @@
 						</div>
 						<div class="col-md-4 small">
 							{% if topic.last_message %}
-								<a href="{% url 'topic' pk=topic.pk %}">Last response ({{ topic.last_message.posted }})</a><br />by <a href="{% url 'user' pk=topic.last_message.author.pk %}">{{ topic.last_message.author }}</a>
+								<a href="{% url 'topic' pk=topic.pk %}">{% trans "Last response" %} ({{ topic.last_message.posted }})</a><br />{% trans "by" %} <a href="{% url 'user' pk=topic.last_message.author.pk %}">{{ topic.last_message.author }}</a>
 							{% else %}
-								No messages
+								{% trans "No messages" %}
 							{% endif %}
 						</div>
 					</div>
