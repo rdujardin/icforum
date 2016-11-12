@@ -35,7 +35,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12 small">
-									by <a href="{% url 'user' pk=topic.author.pk %}">{{ topic.author }}</a> ({{ topic.created }})
+									{% trans "by" %} <a href="{% url 'user' pk=topic.author.pk %}">{{ topic.author }}</a> ({{ topic.created }})
 								</div>
 							</div>
 						</div>

@@ -13,7 +13,7 @@
 					<div class="row small"><div class="col-md-12">
 						{% if tag.last_message %}
 							<a href="{% url 'topic' pk=tag.last_message.topic.pk %}">{{ tag.last_message.topic.title }} ({{ tag.last_message.posted }})</a>
-							 by 
+							 {% trans "by" %} 
 							<a href="{% url 'user' pk=tag.last_message.author.pk %}">{{ tag.last_message.author }}</a> 
 						{% else %}
 							{% trans "No messages" %}
