@@ -23,7 +23,7 @@ from django.utils.translation import ugettext_lazy as _
 class Tag(models.Model):
 	name = models.CharField(max_length=100, verbose_name=_('Name'))
 	main = models.BooleanField(default=False, verbose_name=_('On Homepage'))
-	only_for = models.ManyToManyField(Group, verbose_name=_('Allowed Groups'))
+	only_for = models.ManyToManyField(Group, verbose_name=_('Allowed Groups'), blank=True)
 	cover_image = models.CharField(max_length=100, blank=True)
 
 	def __str__(self):
