@@ -35,7 +35,7 @@ class Topic(models.Model):
 	created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
 	updated = models.DateTimeField(auto_now_add=True, verbose_name=_('Updated'))
 	tags = models.ManyToManyField(Tag, verbose_name=_('Tags'))
-	private_viewers = models.ManyToManyField(User)
+	private_viewers = models.ManyToManyField(User, blank=True)
 	post_it = models.BooleanField(default=False, verbose_name=_('Post-it'))
 	closed = models.BooleanField(default=False, verbose_name=_('Closed'))
 
