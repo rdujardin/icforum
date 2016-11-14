@@ -76,7 +76,25 @@ def list_files(request, page=1):
 		'can_manage': can_manage,
 	})
 
-def file(request, pk):
+def new_file(request):
+	if not request.user.has_perm('files.create_edit_file'):
+		return redirect(list_files)
+
+	if request.method == 'GET':
+		new_file_form = NewFileForm()
+	else:
+		new_file_form = NewFileForm(request.POST)
+		if new_file_form.is_valid():
+			new_file_form.instance.save()
+			for tag in new_file_form.cleaned_data['tags']:
+				new_file_form.instance.tags.add(tag)
+			return redirect(file, pk=new_file_form.instance.pk)
+
+	return _render(request, 'files/new_file.html', {
+		'new_file_form': new_file_form,
+	})
+
+def file(request, pk, new_chapter=0):
 	file = get_object_or_404(File.objects.all(), pk=pk)
 
 	chapters = Chapter.objects.filter(file__id__exact=file.id).order_by('position')
@@ -93,10 +111,24 @@ def file(request, pk):
 	# Determine if user can manage files
 	can_manage = request.user.has_perm('files.create_edit_file')
 
+	new_chapter_form = None
+	if can_manage and new_chapter == '1':
+		if request.method == 'GET':
+			new_chapter_form = ChapterForm()
+		else:
+			new_chapter_form = ChapterForm(request.POST)
+			if new_chapter_form.is_valid():
+				new_chapter_form.instance.content = sanitize_html(new_chapter_form.cleaned_data['content'])
+				new_chapter_form.instance.file = file
+				new_chapter_form.instance.file.updated = datetime.datetime.now()
+				new_chapter_form.instance.save()
+				return redirect(chapter, new_chapter_form.instance.pk)
+
 	return _render(request, 'files/file.html', {
 		'file': file,
 		'chapters': chapters,
 		'can_manage': can_manage,
+		'new_chapter_form': new_chapter_form,
 	})
 
 def chapter(request, pk, edit=0):

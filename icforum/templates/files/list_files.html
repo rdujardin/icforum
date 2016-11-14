@@ -37,6 +37,16 @@
 <div class="row">
 	<div class="col-md-12">
 
+		{% if can_manage %}
+
+			<div class="row tile pad">
+				<div class="col-md-12">
+					<a href="{% url 'new_file' %}" class="goto"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {% trans "New file" %}</a>
+				</div>
+			</div>
+
+		{% endif %}
+
 		{% for file in files %}
 
 			<div class="row tile pad">
