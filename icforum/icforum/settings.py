@@ -156,7 +156,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Forum settings
 
-IC_FORUM_VERSION = '0.1'
+IC_FORUM_VERSION = '0.1.1'
 
 CONTENT_TYPES = ['image']
 MAX_UPLOAD_SIZE = '524288'
