@@ -1,9 +1,9 @@
 # Copyright 2016 Infinite Connection
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
@@ -11,13 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 19:05+0000\n"
+"POT-Creation-Date: 2016-11-15 02:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,42 +25,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: users/forms.py:8
+#: users/forms.py:22
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: users/forms.py:9
+#: users/forms.py:23
 msgid "Password"
 msgstr "Mot de passe"
 
-#: users/forms.py:15
+#: users/forms.py:29
 msgid "Invalid username or password"
 msgstr "Identifiants invalides"
 
-#: users/forms.py:19
+#: users/forms.py:33
 msgid "You have been banned, try again later"
 msgstr "Vous avez été banni, veuillez réessayer plus tard"
 
-#: users/forms.py:22
+#: users/forms.py:36
 msgid "Image file (max. 512 kb)"
 msgstr "Fichier image (max. 512 kb)"
 
-#: users/forms.py:29
+#: users/forms.py:43
 msgid "File is too big"
 msgstr "Le fichier est trop volumineux"
 
-#: users/forms.py:31
+#: users/forms.py:45
 msgid "File type is not supported"
 msgstr "Le fichier est d'un type non-supporté"
 
-#: users/models.py:7
+#: users/models.py:21
 msgid "Signed up"
 msgstr "Inscrit"
 
-#: users/models.py:8
+#: users/models.py:22
 msgid "Is banned"
 msgstr "Est banni"
 
-#: users/models.py:9
+#: users/models.py:23
 msgid "Avatar"
 msgstr "Avatar"

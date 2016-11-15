@@ -1,9 +1,9 @@
 # Copyright 2016 Infinite Connection
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
@@ -11,13 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 19:05+0000\n"
+"POT-Creation-Date: 2016-11-15 02:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,48 +25,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: icforum/settings.py:125
+#: icforum/settings.py:139
 msgid "English"
 msgstr "Anglais"
 
-#: icforum/settings.py:126
+#: icforum/settings.py:140
 msgid "French"
 msgstr "Français"
 
-#: templates/files/chapter.html:8 templates/files/list_files.html:7
-#: templates/forum/_base.html:33
+#: templates/files/chapter.html:24 templates/files/list_files.html:23
+#: templates/forum/_base.html:49
 msgid "Files"
 msgstr "Fichiers"
 
-#: templates/files/chapter.html:45 templates/forum/topic.html:48
+#: templates/files/chapter.html:61 templates/forum/topic.html:64
 msgid "Editing"
 msgstr "Edition"
 
-#: templates/files/chapter.html:45 templates/forum/topic.html:48
+#: templates/files/chapter.html:61 templates/forum/topic.html:64
 msgid "Cancel"
 msgstr "Annuler"
 
-#: templates/files/chapter.html:52 templates/forum/topic.html:57
+#: templates/files/chapter.html:68 templates/forum/topic.html:73
 msgid "Edit"
 msgstr "Editer"
 
-#: templates/files/list_files.html:45
+#: templates/files/file.html:36 templates/files/new_file.html:34
+#: templates/forum/new_topic.html:33
+msgid "Create"
+msgstr "Créer"
+
+#: templates/files/file.html:52
+msgid "New chapter"
+msgstr "Nouveau chapitre"
+
+#: templates/files/list_files.html:44 templates/files/new_file.html:23
+msgid "New file"
+msgstr "Nouveau fichier"
+
+#: templates/files/list_files.html:71
 msgid "Last update"
 msgstr "Dernière modification"
 
-#: templates/forum/_base.html:34
+#: templates/forum/_base.html:50
 msgid "Forums"
 msgstr "Forums"
 
-#: templates/forum/_base.html:38
+#: templates/forum/_base.html:54
 msgid "Sign out"
 msgstr "Déconnexion"
 
-#: templates/forum/_base.html:40
+#: templates/forum/_base.html:56
 msgid "Sign in"
 msgstr "Connexion"
 
-#: templates/forum/_base.html:49
+#: templates/forum/_base.html:65
 msgid ""
 "Warning, this forum is currently in development. If you encounter bugs or "
 "have suggestions, please send an email to raphael dot dujardin at "
@@ -78,102 +89,99 @@ msgstr ""
 "avez des suggestions, veuillez envoyer un email à raphael dot dujardin at "
 "infiniteconnection dot fr."
 
-#: templates/forum/_base.html:58 templates/forum/new_topic.html:7
+#: templates/forum/_base.html:74 templates/forum/new_topic.html:23
 msgid "New topic"
 msgstr "Nouveau sujet"
 
-#: templates/forum/_base.html:64 templates/forum/mail.html:8
+#: templates/forum/_base.html:80 templates/forum/mail.html:24
 msgid "Mails"
 msgstr "Mails"
 
-#: templates/forum/_base.html:77
+#: templates/forum/_base.html:93
 msgid ""
 "The site is under maintenance. We apologize for the disturbment, come back "
 "later or contact the staff at support at infiniteconnection dot com."
 msgstr ""
-"Le site est en maintenance. Toutes nos excuses pour le désagrément,"
-"veuillez revenir un peu plus tard ou contacter le staff à support at"
-" infiniteconnection dot com."
+"Le site est en maintenance. Toutes nos excuses pour le désagrément,veuillez "
+"revenir un peu plus tard ou contacter le staff à support at "
+"infiniteconnection dot com."
 
-#: templates/forum/_base.html:87
+#: templates/forum/_base.html:103
 msgid "Go Top"
 msgstr "Aller en haut"
 
-#: templates/forum/_base.html:88
+#: templates/forum/_base.html:104
 msgid "see on GitHub"
 msgstr "voir sur GitHub"
 
-#: templates/forum/home.html:19 templates/forum/mail.html:60
-#: templates/forum/tag.html:46 templates/forum/tag.html:80
-msgid "No messages"
-msgstr "Pas de messages"
-
-#: templates/forum/mail.html:13
-msgid "Write mail"
-msgstr "Ecrire mail"
-
-#: templates/forum/mail.html:21
-msgid "Private messages"
-msgstr "Messages privés"
-
-#: templates/forum/mail.html:58 templates/forum/tag.html:44
-#: templates/forum/tag.html:78
-msgid "Last response"
-msgstr "Dernière réponse"
-
-#: templates/forum/mail.html:58 templates/forum/tag.html:44
-#: templates/forum/tag.html:78
+#: templates/forum/home.html:32 templates/forum/mail.html:68
+#: templates/forum/mail.html:74 templates/forum/tag.html:54
+#: templates/forum/tag.html:60 templates/forum/tag.html:94
 msgid "by"
 msgstr "par"
 
-#: templates/forum/new_topic.html:17
-msgid "Create"
-msgstr "Créer"
+#: templates/forum/home.html:35 templates/forum/mail.html:76
+#: templates/forum/tag.html:62 templates/forum/tag.html:96
+msgid "No messages"
+msgstr "Pas de messages"
 
-#: templates/forum/topic.html:12
+#: templates/forum/mail.html:29
+msgid "Write mail"
+msgstr "Ecrire mail"
+
+#: templates/forum/mail.html:37
+msgid "Private messages"
+msgstr "Messages privés"
+
+#: templates/forum/mail.html:74 templates/forum/tag.html:60
+#: templates/forum/tag.html:94
+msgid "Last response"
+msgstr "Dernière réponse"
+
+#: templates/forum/topic.html:28
 msgid "Closed"
 msgstr "Fermé"
 
-#: templates/forum/topic.html:39
+#: templates/forum/topic.html:55
 msgid "edited"
 msgstr "édité"
 
-#: templates/forum/topic.html:63
+#: templates/forum/topic.html:79
 msgid "This topic was closed, you can't edit a message."
 msgstr "Ce sujet a été fermé, vous ne pouvez pas éditer de message."
 
-#: templates/forum/topic.html:91
+#: templates/forum/topic.html:107
 msgid "Write"
 msgstr "Ecrire"
 
-#: templates/forum/topic.html:96
+#: templates/forum/topic.html:112
 msgid "This topic was closed, you can't write a new message."
 msgstr "Ce sujet a été fermé, vous ne pouvez pas écrire de nouveau message."
 
-#: templates/users/sign_in.html:18
+#: templates/users/sign_in.html:34
 msgid "Submit"
 msgstr "Soumettre"
 
-#: templates/users/user.html:12
+#: templates/users/user.html:28
 msgid "Banned"
 msgstr "Banni"
 
-#: templates/users/user.html:20
+#: templates/users/user.html:36
 msgid "Contact"
 msgstr "Contact"
 
-#: templates/users/user.html:22
+#: templates/users/user.html:38
 msgid "Send mail"
 msgstr "Envoyer un mail"
 
-#: templates/users/user.html:26
+#: templates/users/user.html:42
 msgid "Sign up date"
 msgstr "Date d'inscription"
 
-#: templates/users/user.html:32
+#: templates/users/user.html:48
 msgid "Avatar"
 msgstr "Avatar"
 
-#: templates/users/user.html:42
+#: templates/users/user.html:58
 msgid "Change"
 msgstr "Modifier"

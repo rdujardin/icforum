@@ -1,9 +1,9 @@
 # Copyright 2016 Infinite Connection
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
@@ -11,13 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 19:05+0000\n"
+"POT-Creation-Date: 2016-11-15 02:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,70 +25,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forum/forms.py:28
+#: forum/forms.py:42
 msgid "New message"
 msgstr "Nouveau message"
 
-#: forum/forms.py:35
+#: forum/forms.py:49
 msgid "Edit message"
 msgstr "Editer message"
 
-#: forum/models.py:10
+#: forum/models.py:24
 msgid "Name"
 msgstr "Nom"
 
-#: forum/models.py:11
+#: forum/models.py:25
 msgid "On Homepage"
 msgstr "En page d'accueil"
 
-#: forum/models.py:12
+#: forum/models.py:26
 msgid "Allowed Groups"
 msgstr "Groupes Autorisés"
 
-#: forum/models.py:19
+#: forum/models.py:33
 msgid "Title"
 msgstr "Titre"
 
-#: forum/models.py:20 forum/models.py:39
+#: forum/models.py:34 forum/models.py:53
 msgid "Author"
 msgstr "Auteur"
 
-#: forum/models.py:21
+#: forum/models.py:35
 msgid "Created"
 msgstr "Créé"
 
-#: forum/models.py:22
+#: forum/models.py:36
 msgid "Updated"
 msgstr "Modifié"
 
-#: forum/models.py:23
+#: forum/models.py:37
 msgid "Tags"
 msgstr "Tags"
 
-#: forum/models.py:25
+#: forum/models.py:39
 msgid "Post-it"
 msgstr "Post-it"
 
-#: forum/models.py:26
+#: forum/models.py:40
 msgid "Closed"
 msgstr "Fermé"
 
-#: forum/models.py:35
+#: forum/models.py:49
 msgid "Can edit messages authored by someone else"
 msgstr "Peut éditer les messages d'autres utilisateurs"
 
-#: forum/models.py:38
+#: forum/models.py:52
 msgid "Topic"
 msgstr "Sujet"
 
-#: forum/models.py:40
+#: forum/models.py:54
 msgid "Content"
 msgstr "Contenu"
 
-#: forum/models.py:41
+#: forum/models.py:55
 msgid "Posted"
 msgstr "Posté"
 
-#: forum/models.py:42
+#: forum/models.py:56
 msgid "Edited"
 msgstr "Edité"

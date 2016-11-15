@@ -1,9 +1,9 @@
 # Copyright 2016 Infinite Connection
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 19:05+0000\n"
+"POT-Creation-Date: 2016-11-15 02:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,38 +25,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: files/forms.py:19
+#: forms.py:33
 msgid "Chapter content"
 msgstr "Contenu du chapitre"
 
-#: files/models.py:9
+#: models.py:23
 msgid "Can create and edit files"
 msgstr "Peut créer et éditer des fichiers"
 
-#: files/models.py:12 files/models.py:24
+#: models.py:26 models.py:38
 msgid "Title"
 msgstr "Titre"
 
-#: files/models.py:13
+#: models.py:27
 msgid "Created"
 msgstr "Créé"
 
-#: files/models.py:14
+#: models.py:28
 msgid "Updated"
 msgstr "Modifié"
 
-#: files/models.py:15
+#: models.py:29
 msgid "Tags"
 msgstr "Tags"
 
-#: files/models.py:22
+#: models.py:36
 msgid "File"
 msgstr "Fichier"
 
-#: files/models.py:23
+#: models.py:37
 msgid "Position"
 msgstr "Position"
 
-#: files/models.py:25
+#: models.py:39
 msgid "Content"
 msgstr "Contenu"
