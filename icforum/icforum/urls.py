@@ -31,6 +31,9 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
+from rest_framework.schemas import get_schema_view
+
+api_schema_view = get_schema_view(title='Infinite Connection Forum API')
 
 urlpatterns = [
 
@@ -38,5 +41,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('users.urls')),
     url(r'^files/', include('files.urls')),
+    url(r'^chat/', include('chat.urls')),
+
+    url(r'^schema/$', api_schema_view),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

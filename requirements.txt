@@ -1,7 +1,12 @@
 Django==1.9.8
 Pillow==3.3.0
 bleach==1.4.3
+coreapi==2.0.9
 django-bootstrap3==7.0.1
 django-tables2==1.2.3
+djangorestframework==3.5.3
 html5lib==0.9999999
+itypes==1.1.0
+requests==2.12.0
 six==1.10.0
+uritemplate==3.0.0

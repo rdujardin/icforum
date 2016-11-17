@@ -52,9 +52,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_tables2',
     'bootstrap3',
+    'rest_framework',
     'users',
     'forum',
     'files',
+    'chat',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -160,3 +162,8 @@ IC_FORUM_VERSION = '0.1.1'
 
 CONTENT_TYPES = ['image']
 MAX_UPLOAD_SIZE = '524288'
+
+# REST API
+
+REST_FRAMEWORK = {
+}

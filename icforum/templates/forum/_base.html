@@ -99,10 +99,45 @@
 	    <footer class="footer">
 		    <div class="container-fluid">
 				<div class="row">
-					<p class="col-md-12" >
+					<div class="col-md-1" >
 						<a href="#"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span> {% trans "Go Top" %}</a>
+					</div>
+					<div class="col-md-8" id="chatbox">
+						<div class="row">
+							{% if chat_rooms %}
+								{% for room in chat_rooms.all %}
+									<div class="col-md-1">
+										<!-- Duplicated code in chat.js, begin -->
+										<div class="dropup" id="chat_{{ room.pk }}">
+											<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+												{% if room.title %}
+													{{ room.title }}
+												{% else %}
+													{% for member in room.members.all %}
+														{{ member }},
+													{% endfor %}
+												{% endif %}
+												<span class="caret"></span>
+											</button>
+											<div class="dropdown-menu">
+												<ul class="chatlist">
+												{% for message in room.messages.all %}
+													<li id="chat_msg_{{ message.pk }}"><strong>{{ message.author }} : </strong>{{ message }}</li>
+												{% endfor %}
+												</ul>
+												<input type="text" class="chat" />
+											</div>
+										</div>
+										<!-- End -->
+									</div>
+								{% endfor %}
+							{% endif %}
+							<span id="chaterror" class="col-md-1"></span>
+						</div>
+					</div>
+					<div class="col-md-3">
 						<span class="pull-right">IC Forum v.{{ ic_forum_version }} (<a href="https://github.com/rdujardin/icforum">{% trans "see on GitHub" %}</a>) - <a href="/admin/">Admin</a> - &copy;2016 <a href="https://infiniteconnection.fr">Infinite Connection</a></span>
-					</p>
+					</div>
 				</div>
 		    </div>
 	    </footer>
@@ -121,6 +156,8 @@
 				toolbar: ['bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, cut, copy, paste, bullist, numlist, outdent, indent, blockquote, undo, redo, removeformat', 'styleselect, fontselect, fontsizeselect, forecolor, backcolor, link, table, image, media, codesample']
 			});
 		</script>
+
+		<script src="/static/chat.js"></script>
 
 		{% block javascript %}{% endblock %}
 	</body>

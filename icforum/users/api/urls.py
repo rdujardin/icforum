@@ -13,16 +13,13 @@
 # limitations under the License.
 
 from django.conf.urls import url, include
-from . import views
+from rest_framework import routers
+from .views import *
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
-	url(r'^signin/$', views.sign_in, name='sign_in'),
-	url(r'^signout/$', views.sign_out, name='sign_out'),
-
-	url(r'^set_language/(?P<lang>[a-zA-Z0-9-_]+)/$', views.set_language, name='set_language'),
-
-	url(r'^user/(?P<pk>\d+)/$', views.user, name='user'),
-
-	# TODO : check security before activate this api
-	#url(r'^api/', include('users.api.urls')),
+	url(r'^', include(router.urls)),
+	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

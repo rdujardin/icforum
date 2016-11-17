@@ -12,17 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import url, include
-from . import views
+from django.contrib import admin
 
-urlpatterns = [
-	url(r'^signin/$', views.sign_in, name='sign_in'),
-	url(r'^signout/$', views.sign_out, name='sign_out'),
+from .models import *
 
-	url(r'^set_language/(?P<lang>[a-zA-Z0-9-_]+)/$', views.set_language, name='set_language'),
+@admin.register(Room)
+class RoomAdmin(admin.ModelAdmin):
+	list_display = ['name']
+	order_by = ['name']
 
-	url(r'^user/(?P<pk>\d+)/$', views.user, name='user'),
-
-	# TODO : check security before activate this api
-	#url(r'^api/', include('users.api.urls')),
-]
+@admin.register(ChatMessage)
+class ChatMessageAdmin(admin.ModelAdmin):
+	list_display = ['room', 'author', 'date', 'content']
+	order_by = ['-date']

@@ -17,6 +17,7 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.shortcuts import render
 from django.utils.translation import get_language
+from chat.models import *
 
 def sanitize_html(content):
 	def filter_iframe_src(name, value):
@@ -45,4 +46,6 @@ def _render(request, template, extra):
 	extra['ic_forum_version'] = settings.IC_FORUM_VERSION
 	extra['signed_in_user'] = request.user.username if request.user.is_authenticated() else None
 	extra['current_language'] = get_language()
+	if request.user.is_authenticated():
+		extra['chat_rooms'] = Room.objects.filter(members=request.user)
 	return render(request, template, extra)
