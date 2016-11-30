@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-15 02:18+0000\n"
+"POT-Creation-Date: 2016-11-30 20:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,13 +54,29 @@ msgid "File type is not supported"
 msgstr "Le fichier est d'un type non-supporté"
 
 #: users/models.py:21
+msgid "Notify every action on the forum"
+msgstr "Notifier chaque action sur le forum"
+
+#: users/models.py:22
+msgid "Notify updates on participated topics and every mail"
+msgstr "Notifier les actions sur les topics vus et tous les mails"
+
+#: users/models.py:23
+msgid "Notify updates on explicitly chosen topics and every mail"
+msgstr "Notifier les actions sur les topics suivis et tous les mails"
+
+#: users/models.py:24
+msgid "Notify nothing"
+msgstr "Ne rien notifier"
+
+#: users/models.py:28
 msgid "Signed up"
 msgstr "Inscrit"
 
-#: users/models.py:22
+#: users/models.py:29
 msgid "Is banned"
 msgstr "Est banni"
 
-#: users/models.py:23
+#: users/models.py:30
 msgid "Avatar"
 msgstr "Avatar"

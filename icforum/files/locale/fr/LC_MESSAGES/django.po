@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-15 02:20+0000\n"
+"POT-Creation-Date: 2016-11-30 20:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,38 +25,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms.py:33
+#: files/forms.py:33
 msgid "Chapter content"
 msgstr "Contenu du chapitre"
 
-#: models.py:23
+#: files/models.py:23
 msgid "Can create and edit files"
 msgstr "Peut créer et éditer des fichiers"
 
-#: models.py:26 models.py:38
+#: files/models.py:26 files/models.py:38
 msgid "Title"
 msgstr "Titre"
 
-#: models.py:27
+#: files/models.py:27
 msgid "Created"
 msgstr "Créé"
 
-#: models.py:28
+#: files/models.py:28
 msgid "Updated"
 msgstr "Modifié"
 
-#: models.py:29
+#: files/models.py:29
 msgid "Tags"
 msgstr "Tags"
 
-#: models.py:36
+#: files/models.py:36
 msgid "File"
 msgstr "Fichier"
 
-#: models.py:37
+#: files/models.py:37
 msgid "Position"
 msgstr "Position"
 
-#: models.py:39
+#: files/models.py:39
 msgid "Content"
 msgstr "Contenu"

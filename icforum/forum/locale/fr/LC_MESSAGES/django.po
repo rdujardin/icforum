@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-15 02:18+0000\n"
+"POT-Creation-Date: 2016-11-30 20:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,7 +49,7 @@ msgstr "Groupes Autorisés"
 msgid "Title"
 msgstr "Titre"
 
-#: forum/models.py:34 forum/models.py:53
+#: forum/models.py:34 forum/models.py:54
 msgid "Author"
 msgstr "Auteur"
 
@@ -73,22 +73,22 @@ msgstr "Post-it"
 msgid "Closed"
 msgstr "Fermé"
 
-#: forum/models.py:49
+#: forum/models.py:50
 msgid "Can edit messages authored by someone else"
 msgstr "Peut éditer les messages d'autres utilisateurs"
 
-#: forum/models.py:52
+#: forum/models.py:53
 msgid "Topic"
 msgstr "Sujet"
 
-#: forum/models.py:54
+#: forum/models.py:55
 msgid "Content"
 msgstr "Contenu"
 
-#: forum/models.py:55
+#: forum/models.py:56
 msgid "Posted"
 msgstr "Posté"
 
-#: forum/models.py:56
+#: forum/models.py:57
 msgid "Edited"
 msgstr "Edité"
