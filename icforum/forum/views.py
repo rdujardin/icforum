@@ -27,7 +27,7 @@ import random
 import bleach
 from urllib.parse import urlparse
 
-from users.common import sanitize_html, _render
+from users.common import sanitize_html, _render, has_access_topic, notify
 
 
 def home(request):
@@ -137,6 +137,7 @@ def new_mail(request, pk=0):
 				form.instance.private_viewers.add(viewer)
 			if not request.user in form.cleaned_data['private_viewers']:
 				form.instance.private_viewers.add(request.user)
+			notify('mail_new_mail', form.instance.pk, 1, request.user)
 			return redirect(topic, pk=form.instance.pk)
 	else:
 		if pk != 0:
@@ -159,6 +160,7 @@ def new_topic(request):
 			first_message.save()
 			for tag in form.cleaned_data['tags']:
 				form.instance.tags.add(tag)
+			notify('topic_new_topic', form.instance.pk, 1, request.user)
 			return redirect(topic, pk=form.instance.pk)
 	else:
 		form = TopicForm()
@@ -172,23 +174,12 @@ def topic(request, pk, edit_message=None, page=1):
 	# Get topic
 	topic = get_object_or_404(Topic.objects.all(), pk=pk)
 
-	# Get tags
+	# Get tags and private viewers
 	tags = topic.tags.all()
-
-	# Check that topic does not belong to a tag only for a group the signed in user does not belong to
-	for tag in topic.tags.all():
-		if tag.only_for.all():
-			allowed = False
-			for allowed_group in tag.only_for.all():
-				if allowed_group in request.user.groups.all():
-					allowed = True
-			if not allowed:
-				return redirect(home)
-
-	# Check if the topic is public or if the user can see it
 	private_viewers = topic.private_viewers.all()
-	can_see = (not private_viewers) or request.user in private_viewers
-	if not can_see:
+
+	# Check that signed in user has access to topic
+	if not has_access_topic(topic, request.user):
 		return redirect(home)
 
 	# Get messages in topic
@@ -253,6 +244,10 @@ def topic(request, pk, edit_message=None, page=1):
 						message.edited = datetime.datetime.now()
 						message.save()
 						edit_message_form = None
+						if topic.private_viewers.all():
+							notify('mail_new_or_edited_message', pk, page, request.user)
+						else:
+							notify('topic_new_or_edited_message', pk, page, request.user)
 			return redirect('topic', pk=topic.pk, page=request.POST['page'])
 
 		else:
@@ -263,6 +258,10 @@ def topic(request, pk, edit_message=None, page=1):
 				new_message_form.instance.topic = topic
 				new_message_form.instance.content = sanitize_html(new_message_form.instance.content)
 				new_message_form.instance.save()
+				if topic.private_viewers.all():
+					notify('mail_new_or_edited_message', pk, page, request.user)
+				else:
+					notify('topic_new_or_edited_message', pk, page, request.user)
 				new_message_form = NewMessageForm()
 				return redirect('topic', pk=topic.pk, page=request.POST['page'])
 

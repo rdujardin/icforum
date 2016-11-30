@@ -160,6 +160,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 IC_FORUM_VERSION = '0.1.1'
 
+IC_FORUM_URL = 'https://example.com'
+IC_FORUM_NAME = 'Example'
+
 CONTENT_TYPES = ['image']
 MAX_UPLOAD_SIZE = '524288'
 
@@ -167,3 +170,14 @@ MAX_UPLOAD_SIZE = '524288'
 
 REST_FRAMEWORK = {
 }
+
+# SMTP SETTINGS
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.example.com'
+EMAIL_HOST_USER = 'notification'
+EMAIL_HOST_PASSWORD = 'somepassword'
+EMAIL_PORT = 25
+NOTIFICATION_EMAIL = 'notification@example.com'
+DEFAULT_FROM_EMAIL = 'notification@example.com'
+DEFAULT_TO_EMAIL = 'admin@example.com'

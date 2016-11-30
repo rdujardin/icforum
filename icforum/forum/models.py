@@ -38,6 +38,7 @@ class Topic(models.Model):
 	private_viewers = models.ManyToManyField(User, blank=True)
 	post_it = models.BooleanField(default=False, verbose_name=_('Post-it'))
 	closed = models.BooleanField(default=False, verbose_name=_('Closed'))
+	notify = models.ManyToManyField(User, related_name='followed_topics', blank=True)
 
 	def __str__(self):
 		return self.title

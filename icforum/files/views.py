@@ -28,7 +28,7 @@ import random
 import bleach
 from urllib.parse import urlparse
 
-from users.common import sanitize_html, _render
+from users.common import sanitize_html, _render, has_access_file
 
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -38,14 +38,8 @@ def list_files(request, page=1):
 	not_allowed = []
 
 	for file in files:
-		for tag in file.tags.all():
-			if tag.only_for.all():
-				allowed = False
-				for allowed_group in tag.only_for.all():
-					if allowed_group in request.user.groups.all():
-						allowed = True
-				if not allowed:
-					not_allowed.append(file.pk)
+		if not has_access_file(file, request.user):
+			not_allowed.append(file.pk)
 
 	files = files.exclude(pk__in=not_allowed)
 
@@ -99,14 +93,8 @@ def file(request, pk, new_chapter=0):
 
 	chapters = Chapter.objects.filter(file__id__exact=file.id).order_by('position')
 
-	for tag in file.tags.all():
-		if tag.only_for.all():
-			allowed = False
-			for allowed_group in tag.only_for.all():
-				if allowed_group in request.user.groups.all():
-					allowed = True
-			if not allowed:
-				return redirect(home)
+	if not has_access_file(file, request.user):
+		return redirect(home)
 
 	# Determine if user can manage files
 	can_manage = request.user.has_perm('files.create_edit_file')
@@ -134,18 +122,11 @@ def file(request, pk, new_chapter=0):
 def chapter(request, pk, edit=0):
 	chapter = get_object_or_404(Chapter.objects.all(), pk=pk)
 
+	if not has_access_file(chapter.file, request.user):
+		return redirect(home)
+
 	# Get tags
 	tags = chapter.file.tags.all()
-
-	# Check that topic does not belong to a tag only for a group the signed in user does not belong to
-	for tag in tags:
-		if tag.only_for.all():
-			allowed = False
-			for allowed_group in tag.only_for.all():
-				if allowed_group in request.user.groups.all():
-					allowed = True
-			if not allowed:
-				return redirect(home)
 
 	# Get previous and next chapter
 	try:
